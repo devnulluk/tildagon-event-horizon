@@ -1,0 +1,662 @@
+{
+  "saved_report_path": "apps/event_horizon/kaleidoscope-stress-report.json",
+  "status": "completed",
+  "elapsed_ms": 25643,
+  "tilt": [
+    0,
+    0
+  ],
+  "qualities": [
+    0.25,
+    0.6,
+    0.9
+  ],
+  "radio_enabled_during_test": false,
+  "completed_quality_batches": 2,
+  "diagnostic": "late_kaleidoscope_iris",
+  "expected_draws": 99,
+  "samples": [
+    {
+      "quality": 0.25,
+      "time_ms": 107840,
+      "draw_us": 115805,
+      "free_heap": 1516224
+    },
+    {
+      "quality": 0.25,
+      "time_ms": 107845,
+      "draw_us": 118101,
+      "free_heap": 1489152
+    },
+    {
+      "quality": 0.25,
+      "time_ms": 107850,
+      "draw_us": 114445,
+      "free_heap": 1462192
+    },
+    {
+      "quality": 0.25,
+      "time_ms": 107855,
+      "draw_us": 113290,
+      "free_heap": 1432400
+    },
+    {
+      "quality": 0.25,
+      "time_ms": 107860,
+      "draw_us": 112671,
+      "free_heap": 1408640
+    },
+    {
+      "quality": 0.25,
+      "time_ms": 107865,
+      "draw_us": 110667,
+      "free_heap": 1379664
+    },
+    {
+      "quality": 0.25,
+      "time_ms": 107870,
+      "draw_us": 110556,
+      "free_heap": 1508288
+    },
+    {
+      "quality": 0.25,
+      "time_ms": 107875,
+      "draw_us": 108356,
+      "free_heap": 1478432
+    },
+    {
+      "quality": 0.25,
+      "time_ms": 107880,
+      "draw_us": 108057,
+      "free_heap": 1454592
+    },
+    {
+      "quality": 0.25,
+      "time_ms": 107885,
+      "draw_us": 103947,
+      "free_heap": 1424576
+    },
+    {
+      "quality": 0.25,
+      "time_ms": 107890,
+      "draw_us": 101542,
+      "free_heap": 1393728
+    },
+    {
+      "quality": 0.25,
+      "time_ms": 107895,
+      "draw_us": 100115,
+      "free_heap": 1524080
+    },
+    {
+      "quality": 0.25,
+      "time_ms": 107900,
+      "draw_us": 99226,
+      "free_heap": 1500272
+    },
+    {
+      "quality": 0.25,
+      "time_ms": 107905,
+      "draw_us": 96017,
+      "free_heap": 1469424
+    },
+    {
+      "quality": 0.25,
+      "time_ms": 107910,
+      "draw_us": 92346,
+      "free_heap": 1439488
+    },
+    {
+      "quality": 0.25,
+      "time_ms": 107915,
+      "draw_us": 91594,
+      "free_heap": 1411616
+    },
+    {
+      "quality": 0.25,
+      "time_ms": 107920,
+      "draw_us": 87368,
+      "free_heap": 1387952
+    },
+    {
+      "quality": 0.25,
+      "time_ms": 107925,
+      "draw_us": 86488,
+      "free_heap": 1518432
+    },
+    {
+      "quality": 0.25,
+      "time_ms": 107930,
+      "draw_us": 84883,
+      "free_heap": 1488368
+    },
+    {
+      "quality": 0.25,
+      "time_ms": 107935,
+      "draw_us": 80752,
+      "free_heap": 1414464
+    },
+    {
+      "quality": 0.25,
+      "time_ms": 107940,
+      "draw_us": 78077,
+      "free_heap": 1386272
+    },
+    {
+      "quality": 0.25,
+      "time_ms": 107945,
+      "draw_us": 76295,
+      "free_heap": 1517136
+    },
+    {
+      "quality": 0.25,
+      "time_ms": 107950,
+      "draw_us": 72081,
+      "free_heap": 1487200
+    },
+    {
+      "quality": 0.25,
+      "time_ms": 107955,
+      "draw_us": 69063,
+      "free_heap": 1466560
+    },
+    {
+      "quality": 0.25,
+      "time_ms": 107960,
+      "draw_us": 65482,
+      "free_heap": 1439424
+    },
+    {
+      "quality": 0.25,
+      "time_ms": 107965,
+      "draw_us": 62356,
+      "free_heap": 1409680
+    },
+    {
+      "quality": 0.25,
+      "time_ms": 107970,
+      "draw_us": 59950,
+      "free_heap": 1378640
+    },
+    {
+      "quality": 0.25,
+      "time_ms": 107975,
+      "draw_us": 57629,
+      "free_heap": 1511712
+    },
+    {
+      "quality": 0.25,
+      "time_ms": 107980,
+      "draw_us": 55232,
+      "free_heap": 1481648
+    },
+    {
+      "quality": 0.25,
+      "time_ms": 107985,
+      "draw_us": 52675,
+      "free_heap": 1454656
+    },
+    {
+      "quality": 0.25,
+      "time_ms": 107990,
+      "draw_us": 50008,
+      "free_heap": 1424720
+    },
+    {
+      "quality": 0.25,
+      "time_ms": 107995,
+      "draw_us": 46368,
+      "free_heap": 1404080
+    },
+    {
+      "quality": 0.25,
+      "time_ms": 107999,
+      "draw_us": 134286,
+      "free_heap": 1530800
+    },
+    {
+      "quality": 0.6,
+      "time_ms": 107840,
+      "draw_us": 134507,
+      "free_heap": 1495904
+    },
+    {
+      "quality": 0.6,
+      "time_ms": 107845,
+      "draw_us": 134697,
+      "free_heap": 1462336
+    },
+    {
+      "quality": 0.6,
+      "time_ms": 107850,
+      "draw_us": 136790,
+      "free_heap": 1437280
+    },
+    {
+      "quality": 0.6,
+      "time_ms": 107855,
+      "draw_us": 136598,
+      "free_heap": 1403712
+    },
+    {
+      "quality": 0.6,
+      "time_ms": 107860,
+      "draw_us": 222168,
+      "free_heap": 1526688
+    },
+    {
+      "quality": 0.6,
+      "time_ms": 107865,
+      "draw_us": 132558,
+      "free_heap": 1495200
+    },
+    {
+      "quality": 0.6,
+      "time_ms": 107870,
+      "draw_us": 129941,
+      "free_heap": 1468208
+    },
+    {
+      "quality": 0.6,
+      "time_ms": 107875,
+      "draw_us": 131089,
+      "free_heap": 1438416
+    },
+    {
+      "quality": 0.6,
+      "time_ms": 107880,
+      "draw_us": 130759,
+      "free_heap": 1522112
+    },
+    {
+      "quality": 0.6,
+      "time_ms": 107885,
+      "draw_us": 127213,
+      "free_heap": 1488544
+    },
+    {
+      "quality": 0.6,
+      "time_ms": 107890,
+      "draw_us": 122799,
+      "free_heap": 1454256
+    },
+    {
+      "quality": 0.6,
+      "time_ms": 107895,
+      "draw_us": 119384,
+      "free_heap": 1423744
+    },
+    {
+      "quality": 0.6,
+      "time_ms": 107900,
+      "draw_us": 116899,
+      "free_heap": 1396752
+    },
+    {
+      "quality": 0.6,
+      "time_ms": 107905,
+      "draw_us": 116070,
+      "free_heap": 1518768
+    },
+    {
+      "quality": 0.6,
+      "time_ms": 107910,
+      "draw_us": 112892,
+      "free_heap": 1484512
+    },
+    {
+      "quality": 0.6,
+      "time_ms": 107915,
+      "draw_us": 110427,
+      "free_heap": 1453040
+    },
+    {
+      "quality": 0.6,
+      "time_ms": 107920,
+      "draw_us": 108867,
+      "free_heap": 1425952
+    },
+    {
+      "quality": 0.6,
+      "time_ms": 107925,
+      "draw_us": 104088,
+      "free_heap": 1395344
+    },
+    {
+      "quality": 0.6,
+      "time_ms": 107930,
+      "draw_us": 101984,
+      "free_heap": 1517760
+    },
+    {
+      "quality": 0.6,
+      "time_ms": 107935,
+      "draw_us": 99789,
+      "free_heap": 1484224
+    },
+    {
+      "quality": 0.6,
+      "time_ms": 107940,
+      "draw_us": 97935,
+      "free_heap": 1458160
+    },
+    {
+      "quality": 0.6,
+      "time_ms": 107945,
+      "draw_us": 91510,
+      "free_heap": 1427472
+    },
+    {
+      "quality": 0.6,
+      "time_ms": 107950,
+      "draw_us": 87623,
+      "free_heap": 1393920
+    },
+    {
+      "quality": 0.6,
+      "time_ms": 107955,
+      "draw_us": 84669,
+      "free_heap": 1518208
+    },
+    {
+      "quality": 0.6,
+      "time_ms": 107960,
+      "draw_us": 82868,
+      "free_heap": 1493904
+    },
+    {
+      "quality": 0.6,
+      "time_ms": 107965,
+      "draw_us": 79057,
+      "free_heap": 1459392
+    },
+    {
+      "quality": 0.6,
+      "time_ms": 107970,
+      "draw_us": 75304,
+      "free_heap": 1426048
+    },
+    {
+      "quality": 0.6,
+      "time_ms": 107975,
+      "draw_us": 71339,
+      "free_heap": 1508832
+    },
+    {
+      "quality": 0.6,
+      "time_ms": 107980,
+      "draw_us": 68060,
+      "free_heap": 1475424
+    },
+    {
+      "quality": 0.6,
+      "time_ms": 107985,
+      "draw_us": 63417,
+      "free_heap": 1444800
+    },
+    {
+      "quality": 0.6,
+      "time_ms": 107990,
+      "draw_us": 57784,
+      "free_heap": 1410544
+    },
+    {
+      "quality": 0.6,
+      "time_ms": 107995,
+      "draw_us": 52319,
+      "free_heap": 1385328
+    },
+    {
+      "quality": 0.6,
+      "time_ms": 107999,
+      "draw_us": 49849,
+      "free_heap": 1506704
+    },
+    {
+      "quality": 0.9,
+      "time_ms": 107840,
+      "draw_us": 139975,
+      "free_heap": 1471632
+    },
+    {
+      "quality": 0.9,
+      "time_ms": 107845,
+      "draw_us": 139950,
+      "free_heap": 1437184
+    },
+    {
+      "quality": 0.9,
+      "time_ms": 107850,
+      "draw_us": 137043,
+      "free_heap": 1410704
+    },
+    {
+      "quality": 0.9,
+      "time_ms": 107855,
+      "draw_us": 224794,
+      "free_heap": 1529728
+    },
+    {
+      "quality": 0.9,
+      "time_ms": 107860,
+      "draw_us": 137755,
+      "free_heap": 1495136
+    },
+    {
+      "quality": 0.9,
+      "time_ms": 107865,
+      "draw_us": 135002,
+      "free_heap": 1463440
+    },
+    {
+      "quality": 0.9,
+      "time_ms": 107870,
+      "draw_us": 133224,
+      "free_heap": 1434128
+    },
+    {
+      "quality": 0.9,
+      "time_ms": 107875,
+      "draw_us": 133038,
+      "free_heap": 1399536
+    },
+    {
+      "quality": 0.9,
+      "time_ms": 107880,
+      "draw_us": 131105,
+      "free_heap": 1519968
+    },
+    {
+      "quality": 0.9,
+      "time_ms": 107885,
+      "draw_us": 128825,
+      "free_heap": 1485520
+    },
+    {
+      "quality": 0.9,
+      "time_ms": 107890,
+      "draw_us": 126978,
+      "free_heap": 1456128
+    },
+    {
+      "quality": 0.9,
+      "time_ms": 107895,
+      "draw_us": 124086,
+      "free_heap": 1423488
+    },
+    {
+      "quality": 0.9,
+      "time_ms": 107900,
+      "draw_us": 122144,
+      "free_heap": 1388944
+    },
+    {
+      "quality": 0.9,
+      "time_ms": 107905,
+      "draw_us": 119690,
+      "free_heap": 1514128
+    },
+    {
+      "quality": 0.9,
+      "time_ms": 107910,
+      "draw_us": 117803,
+      "free_heap": 1485664
+    },
+    {
+      "quality": 0.9,
+      "time_ms": 107915,
+      "draw_us": 120326,
+      "free_heap": 1459264
+    },
+    {
+      "quality": 0.9,
+      "time_ms": 107920,
+      "draw_us": 111102,
+      "free_heap": 1430816
+    },
+    {
+      "quality": 0.9,
+      "time_ms": 107925,
+      "draw_us": 107673,
+      "free_heap": 1405456
+    },
+    {
+      "quality": 0.9,
+      "time_ms": 107930,
+      "draw_us": 104211,
+      "free_heap": 1376864
+    },
+    {
+      "quality": 0.9,
+      "time_ms": 107935,
+      "draw_us": 103957,
+      "free_heap": 1502336
+    },
+    {
+      "quality": 0.9,
+      "time_ms": 107940,
+      "draw_us": 99901,
+      "free_heap": 1476784
+    },
+    {
+      "quality": 0.9,
+      "time_ms": 107945,
+      "draw_us": 95319,
+      "free_heap": 1450240
+    },
+    {
+      "quality": 0.9,
+      "time_ms": 107950,
+      "draw_us": 91581,
+      "free_heap": 1421776
+    },
+    {
+      "quality": 0.9,
+      "time_ms": 107955,
+      "draw_us": 87611,
+      "free_heap": 1396352
+    },
+    {
+      "quality": 0.9,
+      "time_ms": 107960,
+      "draw_us": 171357,
+      "free_heap": 1524384
+    },
+    {
+      "quality": 0.9,
+      "time_ms": 107965,
+      "draw_us": 83329,
+      "free_heap": 1496112
+    },
+    {
+      "quality": 0.9,
+      "time_ms": 107970,
+      "draw_us": 76045,
+      "free_heap": 1467520
+    },
+    {
+      "quality": 0.9,
+      "time_ms": 107975,
+      "draw_us": 72150,
+      "free_heap": 1393536
+    },
+    {
+      "quality": 0.9,
+      "time_ms": 107980,
+      "draw_us": 69083,
+      "free_heap": 1516432
+    },
+    {
+      "quality": 0.9,
+      "time_ms": 107985,
+      "draw_us": 64466,
+      "free_heap": 1491008
+    },
+    {
+      "quality": 0.9,
+      "time_ms": 107990,
+      "draw_us": 59100,
+      "free_heap": 1417872
+    },
+    {
+      "quality": 0.9,
+      "time_ms": 107995,
+      "draw_us": 53358,
+      "free_heap": 1386208
+    },
+    {
+      "quality": 0.9,
+      "time_ms": 107999,
+      "draw_us": 53708,
+      "free_heap": 1505280
+    }
+  ],
+  "errors": [],
+  "poses": [
+    107840,
+    107845,
+    107850,
+    107855,
+    107860,
+    107865,
+    107870,
+    107875,
+    107880,
+    107885,
+    107890,
+    107895,
+    107900,
+    107905,
+    107910,
+    107915,
+    107920,
+    107925,
+    107930,
+    107935,
+    107940,
+    107945,
+    107950,
+    107955,
+    107960,
+    107965,
+    107970,
+    107975,
+    107980,
+    107985,
+    107990,
+    107995,
+    107999
+  ],
+  "heap_after": 1529936,
+  "restored": {
+    "draw_method": true,
+    "paused": false,
+    "show_object": true,
+    "space_tilt": true,
+    "swarm_enabled": true
+  },
+  "heap_before": 1535728,
+  "completed": true,
+  "version": "0.2.0",
+  "radio_status_during_test": "disabled"
+}

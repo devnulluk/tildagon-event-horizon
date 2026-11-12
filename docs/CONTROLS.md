@@ -1,10 +1,10 @@
 # Controls and settings
 
-Event Horizon 0.2 runs its nine-chapter, 140-second loop immediately after launch.
+Event Horizon 0.2.1 runs its nine-chapter, 140-second loop immediately after launch.
 Animation uses elapsed time rather than frame counts. Pausing holds the scene
 position; chapter navigation still works while paused. A boost briefly adds
 energy to the current world and light pattern without exceeding brightness
-settings. With Nearby enabled, a local boost is also advertised to other
+settings. With Nearby enabled, a local boost is also broadcast to other
 copies; a received boost adds a visual response without being rebroadcast.
 
 ## Six physical buttons
@@ -90,7 +90,7 @@ twelve touch pads and mouse-operated virtual controls.
 | Matrix | Maximum Liteloop brightness | 12% |
 | Detail | Maximum drawing detail; adaptation can reduce it on slow frames | 90% |
 | Tilt | Relative scene viewpoint motion | On |
-| Nearby | Bluetooth advertisement discovery and shared visual events | On |
+| Nearby | ESP-NOW discovery and shared visual events on the current channel | On |
 
 Numeric rows move in one-percentage-point steps and are clamped to 0–100%.
 Brightness values are independent, including zero. Existing local brightness
@@ -98,10 +98,25 @@ preferences can supply the initial ring/logo levels. Changes are stored under
 the app's own firmware settings when settings close or the app exits. Keyboard
 T is saved on a normal exit as well.
 
-Nearby is the sixth row. Switch it off to stop this app's advertising and
-scanning and clear the peer view. It does not change Wi-Fi settings. If another
-app already owns Bluetooth, Event Horizon leaves that radio alone and continues
-the solo show. Detailed behaviour is in the [Nearby guide](SWARM.md).
+Nearby is the sixth row. **All participating badges need a matching ESP-NOW
+release on the same current 2.4 GHz channel**, displayed as **CH** in the HUD or
+Gravitational Choir page. The same SSID does not guarantee the same channel
+across multiple access points. `CH ?` means the current channel is unknown.
+The app never selects or hops channels. The old Bluetooth beta is incompatible.
+
+Off, exit and loss of foreground focus stop this app's sends and clear its
+peer view. Where the shared ESP-NOW broker is available, the app removes only
+its exact subscription, preserving other listeners. Without that broker, it
+can claim only an inactive raw singleton, and releases only that owned
+instance on close. An existing active raw owner is left untouched.
+
+The app does not write a channel, SSID, credentials or connect/disconnect
+request. The broker can activate STA and manage its normal power policy. The
+raw fallback activates STA if needed, never deactivates STA on exit, and restores
+its temporary power-mode change only if the value has not changed since.
+Nearby off therefore does not promise that all Wi-Fi is off. There is no
+Bluetooth activation, firmware modification or watchdog change. Detailed
+behavior and native verification limits are in the [Nearby guide](SWARM.md).
 
 Recognized optional expansions are driven only when available and not already
 owned by another driver. If the matrix is absent, removed or fails, the LCD and

@@ -5,19 +5,19 @@
   "timebase": "actual monotonic elapsed time",
   "source_view": "lcd",
   "showcase": "swarm",
-  "duration_seconds": 60.035496,
+  "duration_seconds": 60.047324,
   "requested_sample_fps": 15,
   "requested_duration_seconds": 60.0,
-  "captured_frames": 824,
-  "renderer_callbacks": 868,
-  "observed_capture_fps": 13.709,
+  "captured_frames": 872,
+  "renderer_callbacks": 929,
+  "observed_capture_fps": 14.505,
   "motion_interpolation": false,
   "output": "swarm-preview.mp4",
   "native_source_resolution": [
     240,
     240
   ],
-  "scene_choreography": "production-swarm-with-synthetic-BLE-and-local-scene-cuts",
+  "scene_choreography": "production-swarm-with-in-memory-peers-and-local-scene-cuts",
   "synthetic_inputs_sequenced": true,
   "idle_waits_skipped": false,
   "events": [
@@ -26,42 +26,42 @@
       "label": "SOLO"
     },
     {
-      "at": 6.184152100002393,
+      "at": 6.096663999996963,
       "label": "ONE VIRTUAL PEER JOINS"
     },
     {
-      "at": 14.128216500001145,
+      "at": 14.089714400004596,
       "label": "THREE VIRTUAL BADGES"
     },
     {
-      "at": 23.136319400000502,
+      "at": 23.12071630000719,
       "label": "REMOTE BURST / CYAN"
     },
     {
-      "at": 31.075021900003776,
+      "at": 31.13037159999658,
       "label": "REMOTE BURST / AMBER"
     },
     {
-      "at": 38.11589890001051,
+      "at": 38.10272830000031,
       "label": "CONDUCTOR LEAVING"
     },
     {
-      "at": 44.056136300001526,
+      "at": 44.07427139999345,
       "label": "CONDUCTOR HANDOVER"
     },
     {
-      "at": 50.11347900000692,
+      "at": 50.12017910000577,
       "label": "LAST PEER LEAVING"
     },
     {
-      "at": 56.11452139999892,
+      "at": 56.060582000005525,
       "label": "SOLO RECOVERY"
     }
   ],
   "badge_source_sha256": {
     "__init__.py": "e7f7215c4ab93a3aabc8d1d88bda4b3f9c115656371d41603d0b995c6bffd7ea",
-    "app.py": "73662090fc44ec49def8ad73f845bd0b217550b1f756f98335814c84f8988e48",
-    "ble_link.py": "bb729f5946584397c77524a8edd484cfaa9ec3f5b2327c5ce413f6049758fa43",
+    "app.py": "ff8894598ad0916793175dbd3e47ade5e2da268423ed84be47424b296d480a83",
+    "ble_link.py": "b2a66166f725701cd6b8c6ddfd67f0065220f2776e0e2aa8cc6eb9c8c47839a8",
     "chrome.py": "3cba8391c3cfc72d056ee9a6adba13a1453cb0e7bd4458232c1acc9cbf03ed2d",
     "expansions.py": "60ee934eb5388f6b020215ea99ffc069f747781008462eae400f7eea40fd79c0",
     "fx_cosmos.py": "c18e9ea059d76fc32760f3c68ace00c4afe25434296fd96df0ba02b96dc5af47",
@@ -76,8 +76,8 @@
   },
   "capture_raw_badge_source_sha256": {
     "__init__.py": "e7f7215c4ab93a3aabc8d1d88bda4b3f9c115656371d41603d0b995c6bffd7ea",
-    "app.py": "e78dee976341fafa8abb90a15bb0d06ffd672e1ae1cd02afb8eb07f8e1a7ac23",
-    "ble_link.py": "bb729f5946584397c77524a8edd484cfaa9ec3f5b2327c5ce413f6049758fa43",
+    "app.py": "dd7c2e1686247cd68b41b02fd6493f0afbb3a77fcb29dfadc18b063c1575976b",
+    "ble_link.py": "b2a66166f725701cd6b8c6ddfd67f0065220f2776e0e2aa8cc6eb9c8c47839a8",
     "chrome.py": "3cba8391c3cfc72d056ee9a6adba13a1453cb0e7bd4458232c1acc9cbf03ed2d",
     "expansions.py": "60ee934eb5388f6b020215ea99ffc069f747781008462eae400f7eea40fd79c0",
     "fx_cosmos.py": "672e71c7f42f1dca51b9139693afb9d4f02de8b41400a4db3ad5d9b3cbd26aeb",
@@ -98,7 +98,7 @@
       "window": "swarm-preview-01.png",
       "nearby_count": 0,
       "nearby_role": "solo",
-      "at": 1.3555276000115555
+      "at": 1.3503838000033284
     },
     {
       "label": "ONE VIRTUAL PEER JOINS",
@@ -106,7 +106,7 @@
       "window": "swarm-preview-02.png",
       "nearby_count": 1,
       "nearby_role": "follower",
-      "at": 7.39068570001109
+      "at": 7.3243158999976
     },
     {
       "label": "THREE VIRTUAL BADGES",
@@ -114,7 +114,7 @@
       "window": "swarm-preview-03.png",
       "nearby_count": 2,
       "nearby_role": "follower",
-      "at": 15.321350099999108
+      "at": 15.330570899997838
     },
     {
       "label": "REMOTE BURST / CYAN",
@@ -122,7 +122,7 @@
       "window": "swarm-preview-04.png",
       "nearby_count": 2,
       "nearby_role": "follower",
-      "at": 23.631773000000976
+      "at": 23.632202299995697
     },
     {
       "label": "REMOTE BURST / AMBER",
@@ -130,7 +130,7 @@
       "window": "swarm-preview-05.png",
       "nearby_count": 2,
       "nearby_role": "follower",
-      "at": 31.651309200009564
+      "at": 31.666352400003234
     },
     {
       "label": "CONDUCTOR LEAVING",
@@ -138,7 +138,7 @@
       "window": "swarm-preview-06.png",
       "nearby_count": 2,
       "nearby_role": "follower",
-      "at": 39.33065420000639
+      "at": 39.32427599999937
     },
     {
       "label": "CONDUCTOR HANDOVER",
@@ -146,7 +146,7 @@
       "window": "swarm-preview-07.png",
       "nearby_count": 1,
       "nearby_role": "conductor",
-      "at": 45.333211500008474
+      "at": 45.34912480000639
     },
     {
       "label": "LAST PEER LEAVING",
@@ -154,7 +154,7 @@
       "window": "swarm-preview-08.png",
       "nearby_count": 1,
       "nearby_role": "conductor",
-      "at": 51.36305739999807
+      "at": 51.34309229999781
     },
     {
       "label": "SOLO RECOVERY",
@@ -162,14 +162,21 @@
       "window": "swarm-preview-09.png",
       "nearby_count": 0,
       "nearby_role": "solo",
-      "at": 57.37064900000405
+      "at": 57.33791750000091
     }
   ],
   "soundtrack_sha256": "70efe0a12ac8c5987764858feeb0bcacf9468b31cf71397d915559b6581f1751",
   "synthetic_radio": true,
   "virtual_badges": 3,
   "physical_multibadge_test": false,
-  "radio_protocol": "Production10-byte BLE service-data codec over bounded in-memory air",
+  "native_radio_scheduler_exercised": false,
+  "real_bluetooth_adapter_used": false,
+  "real_radio_adapter_used": false,
+  "physical_espnow_test": false,
+  "synthetic_channel": 1,
+  "native_channel_control_exercised": false,
+  "reference_transport": "Official firmware ESP-NOW broker",
+  "radio_protocol": "Production10-byte message in31-byte application envelope over bounded in-memory peer bus",
   "mp4": "swarm-preview.mp4",
   "gif": "swarm-preview.gif",
   "poster": "swarm-preview-poster.png",

@@ -19,7 +19,7 @@ SCENES = ("intro", "starflight", "tunnel", "terrain", "planet", "swarm", "kaleid
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument("--scene", choices=SCENES, help="Start one scene, with a stable mid-scene screenshot position")
 parser.add_argument("--showcase", choices=("tour", "idle", "swarm"), default="tour")
-parser.add_argument("--swarm", action="store_true", help="Three virtual badges on an in-memory production-protocol BLE air lab; no real radio")
+parser.add_argument("--swarm", action="store_true", help="Three virtual badges on an in-memory ESP-NOW-service peer preview; no real radio")
 parser.add_argument("--swarm-stage", choices=("solo", "joined", "trio", "burst", "handover", "departed"),
                     help="Synthetic protocol preroll for a repeatable still, never physical multi-badge evidence")
 parser.add_argument("--seconds", type=float, default=48, help="Recording duration1..180;140 preserves the full native score")
@@ -29,7 +29,7 @@ parser.add_argument("--video-fps", type=int, default=15)
 parser.add_argument("--record-view", choices=("lcd", "window"), default="lcd")
 parser.add_argument("--screenshot", action="store_true")
 parser.add_argument("--output", type=Path)
-parser.add_argument("--gallery", type=Path, help="Capture all8 actual scenes and a contact sheet in one run")
+parser.add_argument("--gallery", type=Path, help="Capture all9 actual scenes and a contact sheet in one run")
 parser.add_argument("--expansions", action="store_true", help="Simulate documented EEH14 +Liteloop adapters; no physical hardware")
 parser.add_argument("--quality", type=float, default=.9)
 parser.add_argument("--action", choices=["joy" + key for key in ("up", "down", "left", "right", "fire")]
@@ -90,7 +90,7 @@ if options.record:
     recorder.soundtrack = str(soundtrack) if soundtrack else None
     recorder.soundtrack_sha256 = hashlib.sha256(soundtrack.read_bytes()).hexdigest() if soundtrack else None
     if options.swarm:
-        recorder.sequence_mode = "production-swarm-with-synthetic-BLE-and-local-scene-cuts"
+        recorder.sequence_mode = "production-swarm-with-in-memory-peers-and-local-scene-cuts"
         recorder.synthetic_radio = True
 
 os.chdir(SIM)
@@ -348,11 +348,11 @@ def render_gui():
     side_text("PROCEDURAL DEMO / NO USB", 79, 17, (255, 201, 95))
     if swarm_lab:
         state = swarm_lab.snapshot(preview.clock_ms if preview else 0)
-        side_text("SYNTHETIC BLE / 3 VIRTUAL BADGES", 103, 17, (255, 201, 95))
-        side_text("No physical radio/range test", 126, 17)
+        side_text("VIRTUAL PEERS / ESP-NOW MODEL", 103, 17, (255, 201, 95))
+        side_text("Synthetic CH1 / no physical RF test", 126, 17)
         for index, peer in enumerate(state["peers"]):
             y = 154 + index * 48
-            side_text(peer["label"] + (" / ADVERTISING" if peer["advertising"] else " / QUIET"), y, 19,
+            side_text(peer["label"] + (" / SENDING" if peer["advertising"] else " / QUIET"), y, 19,
                       (97, 226, 239) if index == 0 else (255, 190, 92))
             side_text("%d peers / %s" % (peer["count"], peer["role"]), y + 22, 17)
     if not swarm_lab:

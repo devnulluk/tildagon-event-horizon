@@ -1,0 +1,42 @@
+{
+  "spaceagon": true,
+  "nearby_peers": 0,
+  "rtc_last": {
+    "operation": "matrix.flush",
+    "active": [
+      "matrix.flush"
+    ],
+    "sequence": 12727,
+    "valid": true,
+    "phase": "enter",
+    "ticks_ms": 599047
+  },
+  "errors": [],
+  "frames_by_scene": {
+    "terrain": 162,
+    "intro": 115,
+    "blackhole": 177,
+    "tunnel": 204,
+    "kaleidoscope": 181,
+    "swarm": 228,
+    "finale": 116,
+    "starflight": 265,
+    "planet": 174
+  },
+  "advertisement_updates": 506,
+  "version": "0.2.1",
+  "radio": "ready",
+  "seconds": 309,
+  "heap_after": 1524784,
+  "eeh_ready": true,
+  "cleanup_timed_out": false,
+  "completed": true,
+  "motion_valid": true,
+  "focused": true,
+  "matrix_frames": 112,
+  "diagnostic": "temporary RTC operation breadcrumbs",
+  "minimum_uncollected_heap": 1378064,
+  "rtc_restored": true,
+  "heap_before": 1529264,
+  "matrix_ready": true
+}

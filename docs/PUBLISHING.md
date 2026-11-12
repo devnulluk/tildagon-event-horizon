@@ -9,7 +9,12 @@ See [Publish your app](https://tildagon.badge.emfcamp.org/tildagon-apps/publish/
 This app uses one root `tildagon.toml`, with the `Media` category and MIT license.
 `app.py` defines `EventHorizon` and `__app_export__ = EventHorizon`. Both frontboards
 are declared optional; a bare badge can run the show. Keep the manifest version
-and release tag aligned: `0.2.0` / `v0.2.0` for the Nearby edition.
+and release tag aligned: `0.2.1` / `v0.2.1` for the ESP-NOW replacement.
+The [native validation record](VALIDATION.md) documents the 679-second ESP-NOW
+full-show pass, final-source synthetic-peer/display fixture, raw API
+qualification and withdrawn Bluetooth attempts. It explicitly does not claim
+an ESP-NOW exchange between two physical badges.
+Archive and live-store checks still need to match the exact published commit.
 
 The current [manifest schema](https://github.com/emfcamp/badge-2024-app-store/blob/main/packages/tildagon-app/src/TildagonAppManifest.ts)
 requires name/category and author/license/source URL/description/version. It has
@@ -21,11 +26,21 @@ is the source of truth for that behavior.
 
 ## Keep the badge download small
 
+Release **0.2.0** was verified in the live store on 12 November 2026. It was
+subsequently marked as a pre-release after the watchdog observation documented
+in [VALIDATION.md](VALIDATION.md); archive integrity is not a stability result.
+The store
+record points to commit `0b9148fcfe8524e36b862c43bc8c14e660682a2b`; its cached
+download is 36,868 bytes and contains 16 runtime files (122,004 bytes unpacked).
+Every file was checked against the release source. The current
+[publication record](store-publication.json) preserves the listing and archive
+hashes; media, documentation, simulator and tests are excluded from that download.
+
 Historical release **0.1.0** was verified in the live store on 12 November 2026. The store
 record points to commit `706805e8141d389e01bd4011d3b03a2347a9c3b2`; its cached
 download is 27,062 bytes and contains 13 runtime files (88,170 bytes unpacked).
 The validator checked every file against the release source. The
-[publication record](store-publication.json) preserves that result.
+[historical publication record](store-publication-0.1.0.json) preserves that result.
 
 The registry selects the newest release by creation time and downloads its
 **commit source tarball**. Uploaded custom runtime archives are not selected.
@@ -39,9 +54,10 @@ This follows the official publishing guide's `export-ignore` advice and Git's
 An uploaded small release asset cannot repair an oversized source archive.
 Check the actual archive before publishing; the badge needs memory to download
 and decompress it. The current validator limits the runtime payload to
-160,000 bytes, including the bounded Nearby model, renderer and BLE transport.
-Bluetooth remains optional at runtime; unavailable or busy radios leave the
-solo show usable.
+160,000 bytes, including the bounded Nearby model, renderer and ESP-NOW adapter.
+ESP-NOW remains optional at runtime; unavailable or busy adapters leave the
+solo show usable. Matching releases and the same current 2.4 GHz channel are
+required for a group. The withdrawn Bluetooth beta is not interoperable.
 
 With Python 3.11+ (or Python 3.10 plus `tomli`) and Git:
 
@@ -63,7 +79,7 @@ After simulator, hardware and content checks pass:
    `https://github.com/devnulluk/tildagon-event-horizon`.
 2. Apply the `tildagon-app` repository topic.
 3. Create a normal published GitHub release for the tested commit, such as
-   `v0.2.0`. A tag alone is insufficient. Keep unready releases as drafts.
+   `v0.2.1`. A tag alone is insufficient. Keep unready releases as drafts.
 4. Download the release's **Source code (tar.gz)** and validate that archive,
    then wait for indexing and verify the store's own cached download.
 

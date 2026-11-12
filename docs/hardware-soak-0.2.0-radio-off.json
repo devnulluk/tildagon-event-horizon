@@ -1,0 +1,30 @@
+{
+  "minimum_uncollected_heap": 1378608,
+  "matrix_frames": 118,
+  "matrix_ready": true,
+  "eeh_ready": true,
+  "diagnostic": "radio-disabled rendering isolation",
+  "spaceagon": true,
+  "motion_valid": true,
+  "focused": true,
+  "seconds": 309,
+  "version": "0.2.0",
+  "frames_by_scene": {
+    "terrain": 171,
+    "intro": 121,
+    "blackhole": 189,
+    "tunnel": 217,
+    "kaleidoscope": 188,
+    "swarm": 234,
+    "finale": 123,
+    "starflight": 274,
+    "planet": 182
+  },
+  "nearby_peers": 0,
+  "completed": true,
+  "radio": "disabled",
+  "errors": [],
+  "heap_before": 1538208,
+  "heap_after": 1533536,
+  "advertisement_updates": 5
+}

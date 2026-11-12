@@ -1,5 +1,5 @@
 {
-  "version": "0.2.0",
+  "version": "0.2.1",
   "all_bytes_verified": true,
   "runtime_files": [
     "__init__.py",
@@ -25,6 +25,9 @@
   "firmware_untouched": true,
   "configuration_preserved": true,
   "startup": "verified",
+  "final_running_version": "0.2.1",
+  "transport": "espnow",
+  "adapter_mode": "broker",
   "radio": "ready",
-  "final_running_version": "0.2.0"
+  "channel": 6
 }

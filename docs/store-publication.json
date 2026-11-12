@@ -2,23 +2,24 @@
   "owner": "devnulluk",
   "repository": "tildagon-event-horizon",
   "name": "Event Horizon",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "categories": [
     "Media"
   ],
   "code": "21344014",
-  "runtime_bytes": 89226,
+  "runtime_bytes": 123139,
   "store": {
     "code": "21344014",
     "url": "https://apps.badge.emfcamp.org/apps/21344014/",
-    "release_commit": "706805e8141d389e01bd4011d3b03a2347a9c3b2",
+    "release_commit": "0b9148fcfe8524e36b862c43bc8c14e660682a2b",
     "archive": {
-      "compressed_bytes": 27062,
-      "runtime_bytes": 88170,
+      "compressed_bytes": 36868,
+      "runtime_bytes": 122004,
       "files": [
         "LICENSE",
         "__init__.py",
         "app.py",
+        "ble_link.py",
         "chrome.py",
         "expansions.py",
         "fx_cosmos.py",
@@ -28,22 +29,27 @@
         "projector.py",
         "show.py",
         "space_inputs.py",
+        "swarm.py",
+        "swarm_fx.py",
         "tildagon.toml"
       ],
       "sha256": {
         "LICENSE": "fa454f6a42c4ee3aed2cf028457231d43f55d0a3953bb2d3cb59faf8d28ba4c9",
         "__init__.py": "e7f7215c4ab93a3aabc8d1d88bda4b3f9c115656371d41603d0b995c6bffd7ea",
-        "app.py": "aa0eb62696e86ba4006ad3a2c17d37deb86b20823a8c54788f5e1fcd9a96d763",
-        "chrome.py": "1d926cf41de069b0669cb406a5438e8bb0c8e08aa16ed86aaadeb39307cd43f6",
+        "app.py": "73662090fc44ec49def8ad73f845bd0b217550b1f756f98335814c84f8988e48",
+        "ble_link.py": "bb729f5946584397c77524a8edd484cfaa9ec3f5b2327c5ce413f6049758fa43",
+        "chrome.py": "3cba8391c3cfc72d056ee9a6adba13a1453cb0e7bd4458232c1acc9cbf03ed2d",
         "expansions.py": "60ee934eb5388f6b020215ea99ffc069f747781008462eae400f7eea40fd79c0",
         "fx_cosmos.py": "c18e9ea059d76fc32760f3c68ace00c4afe25434296fd96df0ba02b96dc5af47",
         "fx_geometry.py": "53cb9c27f2e39fbb31e2a26c65a0c5401a3144e2367df670170ec250e020b3b3",
-        "lights.py": "13c52a00f81839f9dba7b2319edcf68f209e71954378e28def955b2817df1812",
+        "lights.py": "0aa838b398bf1f90cbecc933f915f4a5556faf4f956071818197b8ca78c70297",
         "matrix.py": "f6653ad078ba862f066018bd2a5c691be63ec04610e3bd0f14d534d22db0f31f",
         "projector.py": "ab5deb49255fe89014a661ba24b03d4c1e79f9f7a5fe564563167a3e0eeb1cd5",
-        "show.py": "e6adb8dfd0fffb88860ab318d3d991cc578e6a096e05e74053c7ee61882fabf5",
+        "show.py": "f93a0c4bc28bf85b924690262d473145c666ba8660c172fbbff16beb23f2ae7b",
         "space_inputs.py": "874bb3192eb5fcc9d5fd269caf23eae381803917b4a95815ba8921d926033c7b",
-        "tildagon.toml": "f9460333c33e0d4e560e8fc3ba7eca9c3ab6427e304bd1e61b892d9cc960b17f"
+        "swarm.py": "b9faed1b3c3beeaabafe0b8b7c96d065d0fa4151f43bb23d069eac649543fb52",
+        "swarm_fx.py": "56a3a10e5b3ee8d82e36487397e5b0209cededd0c30301039cb5db9636e96512",
+        "tildagon.toml": "bd566b7483a5aa619b06bad01a44787f198a38b57c4c6ee17d3a983b96594bda"
       }
     }
   }

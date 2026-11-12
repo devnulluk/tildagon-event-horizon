@@ -1,8 +1,9 @@
-"""Synthetic BLE-air lab using production Swarm/Show objects, never a radio.
+"""In-memory peer preview of the ESP-NOW service using production model data.
 
 This host-only module has no bluetooth, network or socket imports. Repeated
 advertisements, queue limits and optional deterministic loss/jitter are explicit
 simulation choices, not measurements of physical radio range or reliability.
+No native ESP-NOW broker, Wi-Fi channel control or RF scheduler is exercised.
 """
 
 
@@ -55,10 +56,15 @@ class Air:
 
 
 class Radio:
+    transport = "virtual-espnow"
+    channel = 1  # Explicit synthetic readout; no real channel is queried/changed.
+    physical_active = False
+    cleanup_timed_out = False
+
     def __init__(self, air, label, owner, enabled):
         self.air, self.label, self.owner = air, label, owner
         self.enabled, self.running, self.closed = enabled is True, False, False
-        self.status_code, self.status = "idle", "SIMULATED BLE IDLE"
+        self.status_code, self.status = "idle", "VIRTUAL PEER IDLE"
         self.tx_count = self.rx_count = self.dropped = 0
         self.queue, self.advert, self.last_payload, self.last_tx = [], None, None, None
 
@@ -74,7 +80,7 @@ class Radio:
         if self.closed or not self.enabled:
             return False
         self.running = True
-        self.status_code, self.status = "ready", "SIMULATED BLE READY"
+        self.status_code, self.status = "ready", "VIRTUAL ESP-NOW PEER READY"
         return True
 
     def send(self, payload, now_ms):
@@ -110,12 +116,12 @@ class Radio:
         if enabled:
             return self.start()
         self.running, self.advert, self.queue = False, None, []
-        self.status_code, self.status = "disabled", "SIMULATED BLE OFF"
+        self.status_code, self.status = "disabled", "VIRTUAL PEER OFF"
         return True
 
     def close(self):
         self.closed, self.running, self.advert, self.queue = True, False, None, []
-        self.status_code, self.status = "closed", "SIMULATED BLE CLOSED"
+        self.status_code, self.status = "closed", "VIRTUAL PEER CLOSED"
 
 
 class SwarmLab:
@@ -144,7 +150,7 @@ class SwarmLab:
                                "radio": self.air.radio(label), "join": join, "leave": leave,
                                "burst": burst, "fired": False, "last_send": -500})
 
-    def factory(self, owner=None, enabled=True, backend=None):
+    def factory(self, owner=None, enabled=True, backend=None, clock=None, event_bus=None, event_type=None):
         self.main_radio = self.air.radio("MAIN", owner, enabled)
         return self.main_radio
 
@@ -198,6 +204,9 @@ class SwarmLab:
                            "count": view["count"], "role": view["role"],
                            "tx": peer["radio"].tx, "rx": peer["radio"].rx})
         return {"synthetic_radio": True, "physical_multibadge_test": False,
+                "reference_transport": "Official firmware ESP-NOW broker",
+                "synthetic_channel": 1, "real_radio_adapter_used": False,
+                "native_radio_scheduler_exercised": False,
                 "label": self.label, "elapsed_ms": self.elapsed, "peers": result,
                 "dropped": self.air.dropped, "remote_echoes": self.remote_events}
 

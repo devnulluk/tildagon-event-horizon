@@ -1,0 +1,22 @@
+{
+  "version": "0.2.1 unpublished finite-scan candidate",
+  "transport": "Controller remains active between finite scans",
+  "completed_endurance_test": false,
+  "last_progress": {
+    "seconds": 41,
+    "rendered_frames": 229,
+    "chapters": 4
+  },
+  "post_reconnect": {
+    "event_horizon_running": false,
+    "machine_reset_cause": 3,
+    "machine_WDT_RESET_constant": 3
+  },
+  "additional_isolation": [
+    "Completion-only IRQ with the full UI also reset before its first41-second report",
+    "Fixed advertising without scanning or an IRQ handler, with the full UI, also reset before its first41-second report",
+    "Bare fixed advertising without UI/expansion I/O completed120 seconds",
+    "Bare unmodified finite-scan transport without UI/expansion I/O completed120 seconds and237 advertisement updates"
+  ],
+  "root_cause": "Unproven. The final burst candidate powers its owned controller down before returning to cooperative UI and peripheral tasks. These observations are not an endurance result for that later candidate."
+}

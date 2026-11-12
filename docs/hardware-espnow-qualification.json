@@ -1,0 +1,12 @@
+{
+  "started": true,
+  "mode": "raw",
+  "channel": 6,
+  "tx": 1,
+  "close_error": null,
+  "raw_active_after_close": false,
+  "last_error": null,
+  "status": "ready",
+  "closed_status": "closed",
+  "accepted": true
+}

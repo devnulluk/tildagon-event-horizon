@@ -1,0 +1,26 @@
+{
+  "before": {
+    "dma_free": 143527,
+    "dma_largest": 102400
+  },
+  "after_wait": {
+    "dma_free": 102523,
+    "dma_largest": 69632
+  },
+  "after_release": {
+    "dma_free": 143535,
+    "dma_largest": 102400
+  },
+  "completed": true,
+  "reset_cause_at_start": 5,
+  "diagnostic": "bare fixed BLE advertising; no UI, application or expansion I/O",
+  "after_advertise": {
+    "dma_free": 102523,
+    "dma_largest": 69632
+  },
+  "after_active": {
+    "dma_free": 102559,
+    "dma_largest": 69632
+  },
+  "seconds": 120
+}

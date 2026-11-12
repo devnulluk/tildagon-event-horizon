@@ -1,0 +1,24 @@
+{
+  "version": "0.2.1",
+  "swarm_smoke_metrics": {
+    "fps": 6,
+    "draw_ms": 41
+  },
+  "eeh_ready": true,
+  "spaceagon": true,
+  "motion_valid": true,
+  "matrix_ready": true,
+  "matrix_frames": 1,
+  "ring_brightness": 0.15,
+  "focused": true,
+  "eeh_brightness": 0.03,
+  "running": true,
+  "nearby_enabled": true,
+  "nearby_radio": "ready",
+  "transport": "espnow",
+  "adapter_mode": "broker",
+  "nearby_peers": 0,
+  "channel": 6,
+  "scene": "intro",
+  "keyboard": true
+}

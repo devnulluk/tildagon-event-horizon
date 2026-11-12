@@ -1,18 +1,35 @@
 # Nearby badges: Gravitational Choir
 
-Event Horizon 0.2 adds a twenty-second constellation chapter to the
-140-second show. Nearby mode discovers other copies through connectionless
-Bluetooth Low Energy advertisements. No pairing, Wi-Fi network, router,
-account, phone application or cloud service is required.
+Event Horizon's nine-chapter, 140-second show includes a twenty-second
+constellation chapter. Version 0.2.1 uses **ESP-NOW over the 2.4 GHz Wi-Fi
+radio**, replacing the withdrawn Bluetooth beta. No internet, router, pairing,
+account or phone application is required by this exchange.
+
+**Participating badges must run a matching release on the same current
+2.4 GHz channel.** The app observes that channel; it never changes it. The
+current native endurance status is recorded in [VALIDATION.md](VALIDATION.md).
+
+**RF verification limit:** an exchange between two physical ESP-NOW badges has
+not been verified. Multi-peer native fixtures and the film use synthetic peers.
 
 ## Try it
 
-1. Launch Event Horizon 0.2 on the participating badges.
+1. Install the same tested ESP-NOW release on every participating badge. The
+   old Bluetooth beta cannot join an ESP-NOW group.
 2. Leave **Nearby** on in the sixth settings row. Hold A to open settings;
    use A/D to select a row and B/E to change it, then C to close.
-3. Navigate to **Gravitational Choir**, or let the show reach it at 72 seconds.
-4. Briefly press A, or move the Spaceagon joystick up, to send a nova event.
-   Watch another badge's constellation, chapter and lights respond.
+3. Compare the **CH** value in the HUD or Gravitational Choir page on every
+   badge. They must match. `CH ?` means the current channel is unknown.
+4. Select **Gravitational Choir**, or let the show reach it at 72 seconds.
+5. Briefly press A, or move the Spaceagon joystick up, to create a nova event.
+   A received event adds a response without being broadcast as another local
+   boost.
+
+The **same SSID is not enough**: badges using different access points can be
+on different channels. A connected station follows its access point's current
+channel, and roaming can change that channel. The app does not disconnect,
+change credentials or hop channels to make a group match. ESP-NOW itself does
+not need an access point, but all participants still need the same channel.
 
 The controls still work when Nearby is off or no other badge is present. All
 light effects respect the independent ring, EEH Logo and Liteloop brightness
@@ -31,76 +48,125 @@ distance, direction, RSSI or a map. The app represents at most twelve recent
 peers, with reduced visual detail at lower quality. A peer disappears after
 six seconds without a fresh accepted message.
 
-## Status and radio lifetime
+## Status and ownership
 
-With peers present, the constellation chapter and HUD show their count and
-the conductor/follower role; an all-paused group is labelled paused.
-**Searching for badges** means the radio is running with an empty peer view.
-Other messages include:
+The constellation page and HUD show the observed channel, peer count and
+conductor/follower role; an all-paused group is labelled paused. **Searching /
+CH n** means Nearby is ready but its peer view is empty. It does not prove
+another badge is reachable on that channel.
 
 | Message | Meaning |
 | --- | --- |
-| Nearby off | The saved Nearby setting is disabled |
-| Bluetooth in use | An existing active Bluetooth owner is left untouched |
-| Bluetooth unavailable | The firmware does not expose the required BLE module |
-| Nearby radio error | The current start, scan or advertisement attempt failed |
+| Nearby off | This app's Nearby setting is disabled |
+| Nearby ESP-NOW ready | The selected adapter started successfully |
+| ESP-NOW in use | An already-active raw singleton is left untouched |
+| ESP-NOW unavailable | The firmware does not expose a supported path |
+| ESP-NOW radio error | Subscription, send, receive or cleanup failed |
 
-The visual show remains usable in these cases. Nearby opens lazily, retries
-after a failure, and releases only the radio it acquired. Disabling it, losing
-foreground focus or exiting stops its scanning/advertising and clears remote
-state. Returning to the show can reopen Nearby if its saved setting is on.
+The adapter prefers the firmware's **shared ESP-NOW broker** where available.
+It subscribes through the service and sends through its existing API;
+it does not create another receiver or replace a shared callback. Off, loss of
+foreground focus and exit remove only this app's exact wrapped subscription,
+stop its sends and clear its peer view. Other listeners and the service remain
+running.
 
-## Version 1 advertisement format
+When the broker is **unavailable**, the adapter can claim the raw
+ESP-NOW singleton only when it is inactive. An already-active singleton is
+refused. After that exclusive claim, a stale receive handler is cleared and
+the app uses polling rather than registering its own receiving callback.
+The raw receive buffer is 2,048 bytes and at most sixteen nonwaiting reads are
+examined per update. Raw receive RSSI is reported as unknown. Closing stops
+only the raw instance this adapter claimed; failed cleanup retains ownership
+so a later close can retry.
 
-The application service UUID is
-`8dd8332c-6329-45dc-a01b-d0dd6688e1f0`. The legacy advertisement contains Flags
-and one 128-bit Service Data field (AD type `0x21`), totalling 31 bytes. The
-service UUID is encoded least-significant byte first, followed by this
-ten-byte application payload:
+Neither path writes a channel, SSID, credentials or connect/disconnect request.
+The firmware broker may activate its station interface and keep Wi-Fi
+awake while listeners exist, then reconcile its normal power policy. The raw
+fallback also activates STA if required, but **never deactivates STA on exit**.
+It temporarily disables station power saving only when the old value can be
+read, and restores that value only if it still matches what this app wrote.
+An intervening power-mode change is preserved. The previous raw receive-buffer
+setting is restored on the same conditional basis.
+
+Nearby off therefore does **not** mean all Wi-Fi is powered down. There is no
+Bluetooth activation, firmware modification, CPU-speed change or watchdog
+change in this transport.
+
+## Version 1 application envelope
+
+The ten-byte visual payload retains its previous byte layout. ESP-NOW carries
+it in the same **31-byte UUID-prefixed application envelope**; it is now data
+in an ESP-NOW message, not an over-air Bluetooth advertisement. Keeping the
+codec unchanged does not make the two radio transports interoperable.
+
+The envelope starts with `02 01 06 1b 21`, followed by the application UUID
+`8dd8332c-6329-45dc-a01b-d0dd6688e1f0` encoded least-significant byte first,
+then these ten bytes:
 
 | Byte offset | Field |
 | --- | --- |
 | 0 | `0x10` for running or `0x11` for paused; version 1 |
 | 1–4 | Four random bytes identifying this app session |
-| 5 | Advertisement-update sequence counter, modulo 256 |
+| 5 | Application-state update sequence counter, modulo 256 |
 | 6 | Local boost-event counter, modulo 256 |
 | 7–8 | Position in the 140-second score, in eight-millisecond units, big-endian |
 | 9 | Colour hue, 0–255 |
 
-Advertisements repeat at a nominal 250-millisecond interval; application
-updates are limited to one per 500 milliseconds. Scanning is passive, with a
-40-millisecond window per 240-millisecond interval. These are configured
-intervals, not promises of delivery or reception latency.
+Broadcast sends use `sync=False`, no more than once per 500 milliseconds. A
+successful return and TX increment mean the stack accepted the send; they are
+not an over-air receipt or acknowledgement. A repeated unchanged request
+within that interval does not send another packet. `sync=False` skips waiting
+for acknowledgement, but native queue-pressure handling can still delay a
+call; it is not a guarantee of instantaneous execution.
 
-Only matching, correctly sized packets are accepted. Self messages, duplicates,
-backward sequence updates and invalid positions are rejected. State is bounded
-to twelve peers, twenty-four replay-history entries and a sixteen-item radio
-queue. The app drains the full bounded batch of up to sixteen messages per
-update, so simultaneous beacons are not silently discarded. Remote boost
-events are rate-limited and are not echoed into the local outbound counter, so
-two badges cannot amplify one event indefinitely. Broadcast events can be lost
-or coalesced; this is visual signalling rather than reliable messaging.
+Only exact matching 31-byte envelopes reach this app's model. The broker path
+copies matching messages into a sixteen-entry FIFO, dropping the oldest when
+full. The raw path examines at most sixteen pending messages per update and
+ignores other applications' packets. The model rejects self messages,
+duplicates, backwards sequence updates and invalid positions; it bounds its
+state to twelve peers and twenty-four replay-history entries. These limits do
+not bound every buffer or peer table inside the firmware's shared/native
+radio implementation.
 
-The payload contains no name, account, call information, credentials or physical
-location. Session IDs are random application identifiers, not persistent badge
-identities. Ordinary Bluetooth controller addresses may still be observable;
-this is not a claim of radio untrackability. Signalling is unauthenticated and
-controls visual state only. The app does not save a peer list to disk.
+Remote boosts are rate-limited and do not advance the local outbound boost
+counter, so peers cannot amplify one event indefinitely. Packets can be lost
+or coalesced. This is unauthenticated visual signalling, not reliable messaging.
+
+The payload contains no name, account, call data, credentials or physical
+location. Session IDs are random application identifiers rather than persistent
+badge identities. The app does not read received MAC addresses or persist a
+peer list. Ordinary Wi-Fi device addresses remain observable to the radio and
+firmware, which may maintain their own receive tables; this is not a claim of
+radio untrackability or zero address retention by the operating system.
 
 ## Demonstrations and verification scope
 
 The [sixty-second preview](gallery/swarm-preview.mp4),
 [GIF](gallery/swarm-preview.gif) and
 [contact sheet](gallery/swarm-preview-contact-sheet.png) use the production
-application with three **virtual** badge models and in-memory advertisement
-delivery. They exercise the real packet encoder, receiver and model without
-using physical Bluetooth. Peer positions and extra density fixtures remain
-explicitly synthetic. They are not evidence of multiple physical badges,
-radio range or physical frame rate.
+application's encoder, model and renderer with three **virtual** badges and
+in-memory packet delivery. Their matching channel is synthetic. The substitute
+adapter does not exercise physical ESP-NOW, channel control or native radio
+scheduling. Peer positions and density fixtures are explicitly synthetic.
+These captures are not photographs, RF-range measurements or physical
+frame-rate evidence.
 
-Physical verification is recorded separately in [VALIDATION.md](VALIDATION.md).
-At the initial radio check, a test PC received advertisements from one physical
-Spaceagon. The PC publisher reported **Aborted**; PC-to-badge transmission was
-not verified. That confirms the badge's transmit path, not a two-badge exchange
-or its radio receive path.
-Do not infer multi-badge RF verification from the simulator film.
+The [native full-show soak](hardware-espnow-soak-0.2.1.json) used the normal
+booted system's **shared broker on channel 6**. It completed 679 seconds and
+3,688 frames across all nine chapters with zero recorded errors. The separate
+[raw API qualification](hardware-espnow-qualification.json) accepted one transmit
+request on channel 6 and confirmed the owned raw instance inactive after close.
+That API check was run in a bare REPL; broker visibility there did not establish
+whether the full booted OS provided the service. Neither check proves another
+physical badge received a packet. See [VALIDATION.md](VALIDATION.md) for the
+measurements and their limits.
+
+The [final native peer fixture](hardware-espnow-stress-0.2.1.json) checked the
+latest status-text background across all nine scenes and with twelve synthetic
+peers, including expiry, echo suppression, off/focus subscription removal and
+shared-radio preservation. It used the real app broker callback on the badge,
+not physical over-air messages.
+
+The earlier badge-to-PC Bluetooth advertising observation is historical; it
+proves neither ESP-NOW reception nor an ESP-NOW exchange between two physical
+badges. Do not infer either from the simulator film.

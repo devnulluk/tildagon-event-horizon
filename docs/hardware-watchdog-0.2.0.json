@@ -1,0 +1,19 @@
+{
+  "version": "0.2.0",
+  "completed_endurance_test": false,
+  "last_progress": {
+    "seconds": 247,
+    "rendered_frames": 1366,
+    "chapters": 9,
+    "matrix_frames": 90
+  },
+  "host_observation": "USB serial read failed before the final native report",
+  "post_reconnect": {
+    "event_horizon_running": false,
+    "machine_reset_cause": 3,
+    "machine_WDT_RESET_constant": 3,
+    "uptime_ms": 129964
+  },
+  "root_cause": "Unproven. Concurrent scan callbacks and advertisement restarts are being isolated; watchdog reset does not identify the responsible subsystem.",
+  "release_action": "Version0.2.0 marked as a pre-release with a warning while finite-scan radio scheduling is validated."
+}

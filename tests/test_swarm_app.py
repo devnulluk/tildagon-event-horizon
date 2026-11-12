@@ -118,6 +118,28 @@ class SwarmAppTests(unittest.TestCase):
         app.update(0)
         self.assertEqual(app._swarm_view['count'], 12)
 
+    def test_radio_window_time_is_included_before_peers_and_lights(self):
+        module, app, hardware, clock = self.app()
+        peer=module.Swarm(node_id=b'\0\0\0\1')
+        app.radio.queue.append((peer.packet({'time_ms':500},500),-40))
+        events=[]
+        original_send,original_poll=app.radio.send,app.radio.poll
+        def send(packet,now):
+            events.append('send')
+            return original_send(packet,now)
+        def poll():
+            events.append('poll')
+            clock.now+=200
+            return original_poll()
+        app.radio.send,app.radio.poll=send,poll
+        clock.now=500
+        app.update(0)
+        self.assertEqual(events,['send','poll'])
+        self.assertEqual(app.clock_ms,700)
+        self.assertEqual(app.show.position,700)
+        self.assertEqual(app._last_lights,700)
+        self.assertEqual(app._swarm_view['count'],1)
+
     def test_shared_lights_remain_within_saved_brightness(self):
         module, app, hardware, clock = self.app()
         peer = module.Swarm(node_id=b'\0\0\0\1', hue=255)

@@ -1,14 +1,29 @@
 # Event Horizon gallery
 
-Open [index.html](index.html) for the gallery or [contact-sheet.png](contact-sheet.png) for all nine chapters of Event Horizon 0.2. Every screenshot is produced by the app running inside the official SDL/ctx simulator. Native LCD files are 240×240; full-window files include clearly labelled virtual Spaceagon controls and expansion diagrams. These are not photographs or physical FPS evidence.
+Open [index.html](index.html) for the gallery or [contact-sheet.png](contact-sheet.png) for all nine chapters of Event Horizon. Every screenshot is produced by the app running inside the official SDL/ctx simulator. Native LCD files are 240×240; full-window files include clearly labelled virtual Spaceagon controls and expansion diagrams. These are not photographs or physical FPS evidence.
 
 The current [sixty-second Nearby preview](swarm-preview.mp4),
 [GIF](swarm-preview.gif) and [contact sheet](swarm-preview-contact-sheet.png)
-use three virtual badge models with in-memory advertisement delivery. Actual
-production packet encoding, parsing, duplicate handling, expiry and visual
-responses are exercised. There are no physical radios in this capture. It is
-not a claim of three physical badges, RF range or two-badge over-air proof.
+use three virtual badge models with in-memory packet delivery and a synthetic
+matching channel. Actual production packet encoding, parsing, duplicate
+handling, expiry and visual responses are exercised. There are no physical
+radios in this capture. It is
+not a test of native ESP-NOW scheduling, channel control, three physical badges,
+RF range or two-badge over-air exchange.
 See the [Nearby guide](../SWARM.md) and [native evidence](../VALIDATION.md).
+
+For physical Nearby use, every badge must run a matching ESP-NOW release on the
+same **current 2.4 GHz channel**, displayed as **CH**. A matching SSID is not
+sufficient across access points on different channels. The app observes the
+channel and never changes it. The earlier Bluetooth beta cannot join this
+transport. The shared ESP-NOW broker is preferred where available; otherwise
+the app can claim an inactive raw singleton. A simulator film proves neither
+hardware path. The physical full-show soak used the normal booted system's
+broker; the separate raw check qualified its API and cleanup only.
+
+The final native twelve-peer fixture also injected synthetic broker events.
+**Two physical badges exchanging ESP-NOW messages have not been verified.**
+Neither the native callback fixture nor this film should be read as that proof.
 
 From the project checkout:
 

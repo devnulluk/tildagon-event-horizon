@@ -3,8 +3,8 @@
   "physical_camera_footage": false,
   "source_hashes": {
     "__init__.py": "e7f7215c4ab93a3aabc8d1d88bda4b3f9c115656371d41603d0b995c6bffd7ea",
-    "app.py": "73662090fc44ec49def8ad73f845bd0b217550b1f756f98335814c84f8988e48",
-    "ble_link.py": "bb729f5946584397c77524a8edd484cfaa9ec3f5b2327c5ce413f6049758fa43",
+    "app.py": "ff8894598ad0916793175dbd3e47ade5e2da268423ed84be47424b296d480a83",
+    "ble_link.py": "b2a66166f725701cd6b8c6ddfd67f0065220f2776e0e2aa8cc6eb9c8c47839a8",
     "chrome.py": "3cba8391c3cfc72d056ee9a6adba13a1453cb0e7bd4458232c1acc9cbf03ed2d",
     "expansions.py": "60ee934eb5388f6b020215ea99ffc069f747781008462eae400f7eea40fd79c0",
     "fx_cosmos.py": "c18e9ea059d76fc32760f3c68ace00c4afe25434296fd96df0ba02b96dc5af47",
@@ -19,8 +19,8 @@
   },
   "badge_source_sha256": {
     "__init__.py": "e7f7215c4ab93a3aabc8d1d88bda4b3f9c115656371d41603d0b995c6bffd7ea",
-    "app.py": "73662090fc44ec49def8ad73f845bd0b217550b1f756f98335814c84f8988e48",
-    "ble_link.py": "bb729f5946584397c77524a8edd484cfaa9ec3f5b2327c5ce413f6049758fa43",
+    "app.py": "ff8894598ad0916793175dbd3e47ade5e2da268423ed84be47424b296d480a83",
+    "ble_link.py": "b2a66166f725701cd6b8c6ddfd67f0065220f2776e0e2aa8cc6eb9c8c47839a8",
     "chrome.py": "3cba8391c3cfc72d056ee9a6adba13a1453cb0e7bd4458232c1acc9cbf03ed2d",
     "expansions.py": "60ee934eb5388f6b020215ea99ffc069f747781008462eae400f7eea40fd79c0",
     "fx_cosmos.py": "c18e9ea059d76fc32760f3c68ace00c4afe25434296fd96df0ba02b96dc5af47",
@@ -35,8 +35,8 @@
   },
   "capture_raw_badge_source_sha256": {
     "__init__.py": "e7f7215c4ab93a3aabc8d1d88bda4b3f9c115656371d41603d0b995c6bffd7ea",
-    "app.py": "e78dee976341fafa8abb90a15bb0d06ffd672e1ae1cd02afb8eb07f8e1a7ac23",
-    "ble_link.py": "bb729f5946584397c77524a8edd484cfaa9ec3f5b2327c5ce413f6049758fa43",
+    "app.py": "dd7c2e1686247cd68b41b02fd6493f0afbb3a77fcb29dfadc18b063c1575976b",
+    "ble_link.py": "b2a66166f725701cd6b8c6ddfd67f0065220f2776e0e2aa8cc6eb9c8c47839a8",
     "chrome.py": "3cba8391c3cfc72d056ee9a6adba13a1453cb0e7bd4458232c1acc9cbf03ed2d",
     "expansions.py": "60ee934eb5388f6b020215ea99ffc069f747781008462eae400f7eea40fd79c0",
     "fx_cosmos.py": "672e71c7f42f1dca51b9139693afb9d4f02de8b41400a4db3ad5d9b3cbd26aeb",
@@ -56,8 +56,8 @@
       "physical_camera_footage": false,
       "scene": "intro",
       "frames": 7,
-      "pid": 54152,
-      "time_ms": 3293,
+      "pid": 37048,
+      "time_ms": 3298,
       "spaceagon_inputs_simulated": true,
       "expansions_simulated": true,
       "eeh_writes": 7,
@@ -66,16 +66,16 @@
       "quality_requested": 0.9,
       "quality_rendered": 0.9,
       "adaptive_quality": false,
-      "draw_ms": 13,
-      "heartbeat": 1794459370.9989314
+      "draw_ms": 11,
+      "heartbeat": 1794469100.008687
     },
     {
       "official_simulator": true,
       "physical_camera_footage": false,
       "scene": "starflight",
       "frames": 13,
-      "pid": 54152,
-      "time_ms": 15612,
+      "pid": 37048,
+      "time_ms": 15547,
       "spaceagon_inputs_simulated": true,
       "expansions_simulated": true,
       "eeh_writes": 13,
@@ -84,16 +84,16 @@
       "quality_requested": 0.9,
       "quality_rendered": 0.9,
       "adaptive_quality": false,
-      "draw_ms": 30,
-      "heartbeat": 1794459371.441091
+      "draw_ms": 19,
+      "heartbeat": 1794469100.3591194
     },
     {
       "official_simulator": true,
       "physical_camera_footage": false,
       "scene": "tunnel",
       "frames": 19,
-      "pid": 54152,
-      "time_ms": 31710,
+      "pid": 37048,
+      "time_ms": 31600,
       "spaceagon_inputs_simulated": true,
       "expansions_simulated": true,
       "eeh_writes": 19,
@@ -102,16 +102,16 @@
       "quality_requested": 0.9,
       "quality_rendered": 0.9,
       "adaptive_quality": false,
-      "draw_ms": 27,
-      "heartbeat": 1794459371.9305906
+      "draw_ms": 28,
+      "heartbeat": 1794469100.7701807
     },
     {
       "official_simulator": true,
       "physical_camera_footage": false,
       "scene": "terrain",
       "frames": 25,
-      "pid": 54152,
-      "time_ms": 47620,
+      "pid": 37048,
+      "time_ms": 47630,
       "spaceagon_inputs_simulated": true,
       "expansions_simulated": true,
       "eeh_writes": 25,
@@ -120,16 +120,16 @@
       "quality_requested": 0.9,
       "quality_rendered": 0.9,
       "adaptive_quality": false,
-      "draw_ms": 34,
-      "heartbeat": 1794459372.360274
+      "draw_ms": 30,
+      "heartbeat": 1794469101.2020106
     },
     {
       "official_simulator": true,
       "physical_camera_footage": false,
       "scene": "planet",
       "frames": 31,
-      "pid": 54152,
-      "time_ms": 63648,
+      "pid": 37048,
+      "time_ms": 63616,
       "spaceagon_inputs_simulated": true,
       "expansions_simulated": true,
       "eeh_writes": 31,
@@ -138,16 +138,16 @@
       "quality_requested": 0.9,
       "quality_rendered": 0.9,
       "adaptive_quality": false,
-      "draw_ms": 30,
-      "heartbeat": 1794459372.8039737
+      "draw_ms": 25,
+      "heartbeat": 1794469101.6127982
     },
     {
       "official_simulator": true,
       "physical_camera_footage": false,
       "scene": "swarm",
       "frames": 37,
-      "pid": 54152,
-      "time_ms": 81430,
+      "pid": 37048,
+      "time_ms": 81385,
       "spaceagon_inputs_simulated": true,
       "expansions_simulated": true,
       "eeh_writes": 37,
@@ -156,16 +156,16 @@
       "quality_requested": 0.9,
       "quality_rendered": 0.9,
       "adaptive_quality": false,
-      "draw_ms": 27,
-      "heartbeat": 1794459373.2390285
+      "draw_ms": 24,
+      "heartbeat": 1794469101.9975684
     },
     {
       "official_simulator": true,
       "physical_camera_footage": false,
       "scene": "kaleidoscope",
       "frames": 43,
-      "pid": 54152,
-      "time_ms": 99719,
+      "pid": 37048,
+      "time_ms": 99667,
       "spaceagon_inputs_simulated": true,
       "expansions_simulated": true,
       "eeh_writes": 43,
@@ -174,16 +174,16 @@
       "quality_requested": 0.9,
       "quality_rendered": 0.9,
       "adaptive_quality": false,
-      "draw_ms": 48,
-      "heartbeat": 1794459373.772167
+      "draw_ms": 44,
+      "heartbeat": 1794469102.4849148
     },
     {
       "official_simulator": true,
       "physical_camera_footage": false,
       "scene": "blackhole",
       "frames": 49,
-      "pid": 54152,
-      "time_ms": 117494,
+      "pid": 37048,
+      "time_ms": 117484,
       "spaceagon_inputs_simulated": true,
       "expansions_simulated": true,
       "eeh_writes": 49,
@@ -193,15 +193,15 @@
       "quality_rendered": 0.9,
       "adaptive_quality": false,
       "draw_ms": 40,
-      "heartbeat": 1794459374.2571485
+      "heartbeat": 1794469102.9601827
     },
     {
       "official_simulator": true,
       "physical_camera_footage": false,
       "scene": "finale",
       "frames": 55,
-      "pid": 54152,
-      "time_ms": 133805,
+      "pid": 37048,
+      "time_ms": 133793,
       "spaceagon_inputs_simulated": true,
       "expansions_simulated": true,
       "eeh_writes": 55,
@@ -210,8 +210,8 @@
       "quality_requested": 0.9,
       "quality_rendered": 0.9,
       "adaptive_quality": false,
-      "draw_ms": 14,
-      "heartbeat": 1794459374.6383498
+      "draw_ms": 10,
+      "heartbeat": 1794469103.3309615
     }
   ]
 }

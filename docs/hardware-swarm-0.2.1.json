@@ -1,0 +1,118 @@
+{
+  "focused": true,
+  "radio_released_when_off": true,
+  "matrix_ready": true,
+  "errors": [],
+  "free_heap": 1519456,
+  "radio_restarted_after_focus": true,
+  "radio_restarted": true,
+  "version": "0.2.1",
+  "outbound_burst_counter_after_remote_echoes": 0,
+  "eeh_ready": true,
+  "maximum_peers": 12,
+  "eeh_brightness": 0.03,
+  "peers_after_timeout": 0,
+  "remote_visual_echoes": 8,
+  "peer_source": "synthetic callback input on real badge; not over-air reception",
+  "ring_brightness": 0.15,
+  "tx": 80,
+  "radio": "ready",
+  "outbound_burst_counter_after_local_press": 1,
+  "radio_released_when_backgrounded": true,
+  "matrix_frames": 9,
+  "cleanup_timed_out": false,
+  "rx": 210,
+  "measurements": [
+    {
+      "quality": 0.6,
+      "observed_fps": 4.05,
+      "mean_draw_ms": 97.45,
+      "peers": 2,
+      "scene": "intro",
+      "frames": 9,
+      "p95_draw_ms": 173.77
+    },
+    {
+      "quality": 0.9,
+      "observed_fps": 4.54,
+      "mean_draw_ms": 60.09,
+      "peers": 2,
+      "scene": "starflight",
+      "frames": 10,
+      "p95_draw_ms": 123.98
+    },
+    {
+      "quality": 0.6,
+      "observed_fps": 4.56,
+      "mean_draw_ms": 81.09,
+      "peers": 2,
+      "scene": "tunnel",
+      "frames": 10,
+      "p95_draw_ms": 157.06
+    },
+    {
+      "quality": 0.75,
+      "observed_fps": 4.11,
+      "mean_draw_ms": 87.92,
+      "peers": 2,
+      "scene": "terrain",
+      "frames": 9,
+      "p95_draw_ms": 163.94
+    },
+    {
+      "quality": 0.75,
+      "observed_fps": 4.77,
+      "mean_draw_ms": 68.48,
+      "peers": 2,
+      "scene": "planet",
+      "frames": 10,
+      "p95_draw_ms": 142.63
+    },
+    {
+      "quality": 0.6,
+      "observed_fps": 4.24,
+      "mean_draw_ms": 112.19,
+      "peers": 2,
+      "scene": "swarm",
+      "frames": 9,
+      "p95_draw_ms": 161.36
+    },
+    {
+      "quality": 0.6,
+      "observed_fps": 4.73,
+      "mean_draw_ms": 68.98,
+      "peers": 2,
+      "scene": "kaleidoscope",
+      "frames": 10,
+      "p95_draw_ms": 79.87
+    },
+    {
+      "quality": 0.6,
+      "observed_fps": 4.01,
+      "mean_draw_ms": 97.34,
+      "peers": 2,
+      "scene": "blackhole",
+      "frames": 9,
+      "p95_draw_ms": 171.82
+    },
+    {
+      "quality": 0.6,
+      "observed_fps": 3.98,
+      "mean_draw_ms": 82.35,
+      "peers": 2,
+      "scene": "finale",
+      "frames": 9,
+      "p95_draw_ms": 89.89
+    },
+    {
+      "quality": 0.450000032,
+      "observed_fps": 3.77,
+      "mean_draw_ms": 114.79,
+      "peers": 12,
+      "scene": "swarm-12-peers",
+      "frames": 16,
+      "p95_draw_ms": 201.15
+    }
+  ],
+  "spaceagon": true
+}

@@ -1,0 +1,26 @@
+{
+  "completed": true,
+  "after_wait": {
+    "dma_free": 102535,
+    "dma_largest": 69632
+  },
+  "after_active": {
+    "dma_free": 102803,
+    "dma_largest": 69632
+  },
+  "reset_cause_at_start": 5,
+  "radio_off": true,
+  "tx": 237,
+  "seconds": 120,
+  "rx": 0,
+  "before": {
+    "dma_free": 143535,
+    "dma_largest": 102400
+  },
+  "cleanup_timed_out": false,
+  "diagnostic": "bare unmodified0.2.1 finite-scan transport; no UI or expansion I/O",
+  "after_release": {
+    "dma_free": 143535,
+    "dma_largest": 102400
+  }
+}

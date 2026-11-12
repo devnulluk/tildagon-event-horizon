@@ -1,4 +1,4 @@
-"""Virtual BLE air uses production wire/model data; no physical-radio claims."""
+"""Virtual peer bus uses production wire/model data; no physical-radio claims."""
 import importlib.util
 from pathlib import Path
 import unittest
@@ -16,7 +16,7 @@ def load(name, path):
 lab_module = load("horizon_virtual_air_test", "simulator/swarm_lab.py")
 protocol = load("horizon_virtual_protocol_test", "swarm.py")
 show = load("horizon_virtual_show_test", "show.py")
-wire = load("horizon_virtual_ble_wire_test", "ble_link.py")
+wire = load("horizon_virtual_peer_wire_test", "ble_link.py")
 
 
 class AirTests(unittest.TestCase):
@@ -140,6 +140,18 @@ class LabTests(unittest.TestCase):
         lab.advance(16000)
         self.assertEqual(lab.elapsed, 6000)
         self.assertTrue(lab.peers[0]["radio"].running)
+
+    def test_channel_is_explicitly_synthetic_and_no_radio_scheduler_is_claimed(self):
+        lab = lab_module.SwarmLab(protocol.Swarm, show.Show, wire)
+        radio = lab.factory(clock=lambda: 0)
+        self.assertEqual(radio.channel, 1)
+        self.assertEqual(radio.transport, "virtual-espnow")
+        self.assertFalse(radio.physical_active)
+        snapshot = lab.snapshot(0)
+        self.assertEqual(snapshot["synthetic_channel"], 1)
+        self.assertIn("ESP-NOW", snapshot["reference_transport"])
+        self.assertFalse(snapshot["real_radio_adapter_used"])
+        self.assertFalse(snapshot["native_radio_scheduler_exercised"])
 
 
 if __name__ == "__main__":

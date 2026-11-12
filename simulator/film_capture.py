@@ -69,6 +69,10 @@ class FrameRecorder:
                  "frames": self.frames}
         if getattr(self, "synthetic_radio", False):
             value.update(synthetic_radio=True, virtual_badges=3, physical_multibadge_test=False,
-                         radio_protocol="Production10-byte BLE service-data codec over bounded in-memory air")
+                         native_radio_scheduler_exercised=False, real_bluetooth_adapter_used=False,
+                         real_radio_adapter_used=False, physical_espnow_test=False,
+                         synthetic_channel=1, native_channel_control_exercised=False,
+                         reference_transport="Official firmware ESP-NOW broker",
+                         radio_protocol="Production10-byte message in31-byte application envelope over bounded in-memory peer bus")
         with _open(str(self.directory / "capture.json"), "w", encoding="utf-8") as handle:
             json.dump(value, handle, indent=2)

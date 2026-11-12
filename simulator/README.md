@@ -62,12 +62,22 @@ captures retain the labelled simulator/virtual-control panel.
 
 ## Three virtual badges
 
-`-Swarm` starts a synthetic BLE-air lab with the production app and two additional
-production `Swarm`/`Show` instances. It never starts a real Bluetooth adapter.
-The lab uses the actual ten-byte payload and BLE service-data wrapper/parser,
-repeated advertisements, two payload updates per second and bounded receive
-queues. Artificial session IDs are deterministic; no physical address or nearby
-device is read. The optional RSSI value is synthetic and is not distance.
+`-Swarm` starts an in-memory peer preview of the firmware's ESP-NOW service with
+the production app and two additional production `Swarm`/`Show` instances. It
+never starts a real radio adapter or Wi-Fi connection. The lab uses the actual
+ten-byte message and its 31-byte application envelope/parser. Artificial packet
+repeats, two payload updates per second and bounded receive queues exercise the
+model independently of hardware timing. Artificial session IDs are deterministic;
+no physical address or nearby device is read. The optional RSSI value is
+synthetic and is not distance.
+
+The preview's channel-1 readout is explicitly synthetic. Physical participants
+must share the same current 2.4GHz Wi-Fi channel to use the official ESP-NOW
+broker. The app does not directly select a channel/SSID or write saved Wi-Fi
+settings. The shared firmware broker owns the real radio and may activate its
+station interface or change power-saving mode as part of that service; leaving
+the app is not a claim that the global radio is off. The host preview performs
+none of those physical operations.
 
 The sixty-second `-Showcase swarm` sequence covers solo, one peer joining, three
 virtual badges, two remote boosts, conductor handover, peers leaving and expiry
@@ -76,6 +86,10 @@ its sparse overlays; peer packets do not select scenes or pause another badge.
 The script ends with both virtual peers quiet; the interactive app then continues
 in solo mode. Radio status and encoded video labels explicitly identify this as
 a simulation, not evidence from two physical badges or a radio-range test.
+The in-memory adapter replaces the firmware broker: this preview exercises the
+production message/model/render path, not native ESP-NOW delivery, channel
+coordination, radio scheduling or hardware watchdog stability. The previous BLE
+transport investigations remain separate historical evidence.
 
 Repeatable stills can preplay the same real packet/state path:
 

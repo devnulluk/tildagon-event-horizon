@@ -37,14 +37,14 @@ def framed(source, label, view, synthetic_radio=False):
         draw = ImageDraw.Draw(canvas)
         centered(draw, (360, 30), "EVENT HORIZON / SPACEAGON", 27, "#f0f6ff")
         centered(draw, (360, 64), label, 22, "#88bdd9")
-        centered(draw, (360, 839), "OFFICIAL SIMULATOR / VIRTUAL BLE PEERS" if synthetic_radio else "OFFICIAL SIMULATOR - PROCEDURAL DEMO", 22, "#ffd06c")
-        centered(draw, (360, 873), "Production codec / no physical radio test" if synthetic_radio else "Real ctx-rendered pixels / no camera footage", 18, "#a0aec0")
+        centered(draw, (360, 839), "OFFICIAL SIMULATOR / VIRTUAL PEERS" if synthetic_radio else "OFFICIAL SIMULATOR - PROCEDURAL DEMO", 22, "#ffd06c")
+        centered(draw, (360, 873), "ESP-NOW service model / no physical RF test" if synthetic_radio else "Real ctx-rendered pixels / no camera footage", 18, "#a0aec0")
     else:
         canvas = Image.new("RGB", (1040, 816), "#080d18")
         canvas.paste(source.convert("RGB"), (0, 48))
         draw = ImageDraw.Draw(canvas)
         centered(draw, (520, 24), "EVENT HORIZON - " + label, 24, "#f0f6ff")
-        centered(draw, (520, 798), "SIMULATED BLE / THREE VIRTUAL BADGES / NO PHYSICAL RADIO TEST" if synthetic_radio else "OFFICIAL SDL/ctx SIMULATOR / SYNTHETIC DEMO / NOT CAMERA FOOTAGE", 18, "#ffd06c")
+        centered(draw, (520, 798), "VIRTUAL PEERS / ESP-NOW MODEL / NO PHYSICAL RADIO TEST" if synthetic_radio else "OFFICIAL SDL/ctx SIMULATOR / SYNTHETIC DEMO / NOT CAMERA FOOTAGE", 18, "#ffd06c")
     return canvas
 
 

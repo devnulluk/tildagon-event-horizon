@@ -1,0 +1,123 @@
+{
+  "outbound_burst_counter_after_remote_echoes": 0,
+  "version": "0.2.1",
+  "eeh_brightness": 0.03,
+  "peers_after_timeout": 0,
+  "peer_source": "synthetic events through actual app broker callback; not over-air reception",
+  "focused": true,
+  "maximum_peers": 12,
+  "transport": "ESP-NOW",
+  "shared_radio_preserved": true,
+  "errors": [],
+  "outbound_burst_counter_after_local_press": 1,
+  "matrix_frames": 9,
+  "radio_restarted_after_focus": true,
+  "remote_visual_echoes": 7,
+  "channel": 6,
+  "cleanup_timed_out": false,
+  "sender_paused_when_off": true,
+  "subscription_removed_when_off": true,
+  "measurements": [
+    {
+      "quality": 0.450000032,
+      "observed_fps": 4.44,
+      "mean_draw_ms": 75.64,
+      "peers": 2,
+      "scene": "intro",
+      "frames": 10,
+      "p95_draw_ms": 84.12
+    },
+    {
+      "quality": 0.75,
+      "observed_fps": 5.16,
+      "mean_draw_ms": 64.07,
+      "peers": 2,
+      "scene": "starflight",
+      "frames": 11,
+      "p95_draw_ms": 147.16
+    },
+    {
+      "quality": 0.450000032,
+      "observed_fps": 4.71,
+      "mean_draw_ms": 79.09,
+      "peers": 2,
+      "scene": "tunnel",
+      "frames": 10,
+      "p95_draw_ms": 161.19
+    },
+    {
+      "quality": 0.75,
+      "observed_fps": 4.33,
+      "mean_draw_ms": 75.7,
+      "peers": 2,
+      "scene": "terrain",
+      "frames": 9,
+      "p95_draw_ms": 151.32
+    },
+    {
+      "quality": 0.75,
+      "observed_fps": 4.52,
+      "mean_draw_ms": 68.36,
+      "peers": 2,
+      "scene": "planet",
+      "frames": 10,
+      "p95_draw_ms": 156.07
+    },
+    {
+      "quality": 0.450000032,
+      "observed_fps": 4.41,
+      "mean_draw_ms": 91.46,
+      "peers": 2,
+      "scene": "swarm",
+      "frames": 10,
+      "p95_draw_ms": 164.54
+    },
+    {
+      "quality": 0.75,
+      "observed_fps": 4.57,
+      "mean_draw_ms": 84.76,
+      "peers": 2,
+      "scene": "kaleidoscope",
+      "frames": 10,
+      "p95_draw_ms": 159.1
+    },
+    {
+      "quality": 0.450000032,
+      "observed_fps": 4.09,
+      "mean_draw_ms": 114.66,
+      "peers": 2,
+      "scene": "blackhole",
+      "frames": 9,
+      "p95_draw_ms": 183.69
+    },
+    {
+      "quality": 0.6,
+      "observed_fps": 4.53,
+      "mean_draw_ms": 80.74,
+      "peers": 2,
+      "scene": "finale",
+      "frames": 10,
+      "p95_draw_ms": 88.48
+    },
+    {
+      "quality": 0.450000032,
+      "observed_fps": 3.77,
+      "mean_draw_ms": 95.09,
+      "peers": 12,
+      "scene": "swarm-12-peers",
+      "frames": 16,
+      "p95_draw_ms": 204.32
+    }
+  ],
+  "subscription_removed_on_focus_loss": true,
+  "rx": 210,
+  "adapter_mode": "broker",
+  "ring_brightness": 0.15,
+  "tx": 83,
+  "free_heap": 1517840,
+  "spaceagon": true,
+  "eeh_ready": true,
+  "radio": "ready",
+  "matrix_ready": true,
+  "radio_restarted": true
+}

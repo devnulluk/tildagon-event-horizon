@@ -1,9 +1,14 @@
 # Event Horizon
 
-**Release status:** 0.2.0 is temporarily a pre-release while a watchdog restart
-observed during extended Bluetooth-enabled hardware testing is investigated.
-The stable solo edition is [0.1.0](https://github.com/devnulluk/tildagon-event-horizon/releases/tag/v0.1.0).
-The Nearby stability update is being validated; the root cause is not yet proven.
+**Nearby compatibility:** version 0.2.1 uses ESP-NOW. Participating badges need
+matching releases on the same current 2.4 GHz channel. The earlier Bluetooth
+beta is withdrawn after native reset failures and is not interoperable; its
+underlying reset cause remains unproven. The ESP-NOW implementation completed
+a [679-second native full-show test](docs/VALIDATION.md) across all nine chapters
+with zero recorded errors.
+
+**RF verification limit:** an ESP-NOW exchange between two physical badges
+has not been verified. Multi-peer tests and the film use synthetic peers.
 
 A 140-second procedural odyssey for Spaceagon and Tildagon. Fly through stars,
 dive into a geometric tunnel, skim neon terrain, orbit a rotating planet and
@@ -46,14 +51,27 @@ scenes are not scientific measurements or a live sky map.
 
 ## Nearby badges
 
-Nearby mode is on by default and can be switched off in settings. Other copies
-of Event Horizon 0.2 use Bluetooth advertisements to discover one another,
-share a sampled beat and colour, and react to local or remote boosts. Press A
-briefly or move the Spaceagon joystick up to launch a nova. The new chapter
+Nearby mode is on by default and can be switched off in settings. Version 0.2.1
+uses **ESP-NOW over the 2.4 GHz Wi-Fi radio** to share a sampled beat and colour
+and react to local or remote boosts. **All participating badges must run a
+matching release on the same current channel**, shown as **CH** in the HUD or
+constellation page. The same SSID is not sufficient when access points use
+different channels. The app observes the channel and never changes it. The old
+Bluetooth beta does not interoperate; update participating badges together.
+
+Press A briefly or move the Spaceagon joystick up to launch a nova. The new chapter
 turns the group into a luminous constellation; other chapters receive small
 interaction overlays. The show also works alone or with Nearby off.
 
-No pairing, Wi-Fi network, router, account, cloud service or SD card is required.
+No internet, router, pairing, account, cloud service or SD card is required by
+the exchange. A station connected to an access point follows that access
+point's channel. The app prefers the firmware's shared ESP-NOW broker where
+available; otherwise it can claim an inactive raw singleton, refusing another
+active owner. It may activate STA and temporarily adjust its power saving,
+with conditional restoration, but never writes a channel, SSID, credentials or connect/disconnect
+request. The raw fallback leaves STA active on exit. Nearby off does not mean
+all shared Wi-Fi services are off.
+
 Each badge keeps its own chapter and pause controls. Up to twelve recent peers
 are represented, and peers expire after six seconds without a fresh message.
 Constellation positions are artistic rather than measurements of distance or
@@ -96,10 +114,12 @@ blanking transfer.
 
 ## Film and soundtrack
 
-The current nearby preview runs the production app and three virtual badge
-models through the official SDL/ctx simulator, using in-memory advertisement
-delivery. It is not footage of three physical badges or a measurement of radio
-range or physical frame rate. The
+The current nearby preview runs one production app instance with two virtual
+peer models through the official SDL/ctx simulator, using in-memory packet
+delivery
+and a synthetic matching channel. It does not exercise physical ESP-NOW or its
+native scheduling. It is not footage of three physical badges or a measurement
+of radio range or physical frame rate. The
 [gallery notes](docs/gallery/README.md) describe the virtual hardware and capture
 provenance.
 

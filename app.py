@@ -19,7 +19,7 @@ from .expansions import ExpansionManager
 from .lights import DemoMatrix, write_eeh
 from .space_inputs import SpaceInputs
 
-VERSION = "0.2.0"
+VERSION = "0.2.1"
 DEFAULTS = {"ring_brightness":.15,"eeh_brightness":.03,"matrix_brightness":.12,
             "quality":.9,"adaptive_quality":True,"space_tilt":True,
             "space_touch":True,"space_joystick":True,"space_proximity":False,"swarm_enabled":True}
@@ -138,21 +138,26 @@ class EventHorizon(app.App):
                 self.swarm.clear()
             self._link_live=False
             self._swarm_view=self.swarm.view(self._local_frame(),now)
-            return
+            return now
         if not self.radio.running and now>=self._next_radio_open:
             self.radio.set_enabled(True)
             self._next_radio_open=now+2000
         self._link_live=self.radio.running
         if self._link_live:
-            for payload,rssi in self.radio.poll()[:16]:
+            if now-self._last_beacon>=500:
+                self.radio.send(self.swarm.packet(self._local_frame(),now),now)
+                self._last_beacon=now
+            packets=self.radio.poll()
+            # Include time spent in the transport before accepting peers,
+            # rendering or writing the light layers.
+            now=self._now()
+            for payload,rssi in packets[:16]:
                 self.swarm.receive(payload,now,rssi)
             if self.swarm.consume_burst(now):
                 # Echo visually without advancing the outbound event counter.
                 self.show.burst()
-            if now-self._last_beacon>=500:
-                self.radio.send(self.swarm.packet(self._local_frame(),now),now)
-                self._last_beacon=now
         self._swarm_view=self.swarm.view(self._local_frame(),now)
+        return now
 
     def _setting_key(self,key):
         if key in ("C","F","ENTER","SPACE","S","ESCAPE"):
@@ -238,7 +243,7 @@ class EventHorizon(app.App):
                 elif action=="select":self.show.select((max(1,event.get("pad",1))-1)*len(SCENES)//12)
             elif kind=="proximity" and not self._settings:self._burst()
         if self._stopping:return False
-        self._link_tick(now)
+        now=self._link_tick(now)
         if now-self._last_lights>=40:
             self._write_lights()
             self._last_lights=now
@@ -365,9 +370,15 @@ class EventHorizon(app.App):
                     ctx.restore()
                 overlay(ctx,frame,self._hud,self.show.paused,self.metrics)
             if not self._settings and (self._hud or frame["scene"]=="swarm"):
-                label=("%d NEARBY / %s"%(self._swarm_view["count"],self._swarm_view["role"].upper())
-                       if self._swarm_view["count"] else "SEARCHING FOR BADGES" if self.radio.running else self.radio.status)
-                text(ctx,label,frame["scene"]=="swarm" and 86 or -73,10,178,(.4,.8,.92))
+                channel=getattr(self.radio,"channel",None)
+                band="CH %d"%channel if type(channel) is int else "CH ?"
+                label=("%d NEARBY / %s"%(self._swarm_view["count"],band)
+                       if self._swarm_view["count"] else "SEARCHING / "+band if self.radio.running else self.radio.status)
+                if frame["scene"]=="swarm":
+                    ctx.rgb(.003,.010,.024).round_rectangle(-70,76,140,17,7).fill()
+                text(ctx,label,frame["scene"]=="swarm" and 84 or -73,10,160,(.4,.8,.92))
+                if frame["scene"]=="swarm":
+                    text(ctx,self._swarm_view["role"].upper(),97,8,120,(.3,.56,.67),minimum=8)
         finally:
             ctx.restore()
         elapsed=max(0,time.ticks_diff(time.ticks_us(),started))/1000
