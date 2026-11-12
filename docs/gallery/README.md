@@ -21,6 +21,12 @@ those intermediate files are not part of the badge download. Machine-local
 directory prefixes are omitted while source hashes, frame counts and timing
 remain unchanged.
 
+`badge_source_sha256` hashes canonical UTF-8 source bytes with CRLF normalized
+to LF, matching the repository's published source. The gallery's `source_hashes`
+field is an alias for that canonical map. `capture_raw_badge_source_sha256`
+preserves the original on-disk hashes from capture, so line-ending changes do
+not erase provenance. The JSON states this normalization explicitly.
+
 To add the original 120 BPM video soundtrack, compose a 48- or 120-second WAV using [compose_soundtrack.py](../../tools/compose_soundtrack.py), then pass it as `-Soundtrack`. The encoder copies the video stream unchanged while muxing AAC, caps the requested duration, retains the silent original, and keeps GIF previews silent. The badge itself does not play this soundtrack.
 
 See [simulator/README.md](../../simulator/README.md) for prerequisites, controls, Python CLI equivalents and the isolated cache layout. Neither capture nor setup connects to USB or changes a badge setting.

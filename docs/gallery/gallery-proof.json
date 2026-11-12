@@ -2,13 +2,13 @@
   "official_simulator": true,
   "physical_camera_footage": false,
   "source_hashes": {
-    "app.py": "1d29bf7c4ac065469848948b771daebdab943ad1a6242f35da42a24b04040cb9",
+    "app.py": "aa0eb62696e86ba4006ad3a2c17d37deb86b20823a8c54788f5e1fcd9a96d763",
     "chrome.py": "1d926cf41de069b0669cb406a5438e8bb0c8e08aa16ed86aaadeb39307cd43f6",
     "expansions.py": "60ee934eb5388f6b020215ea99ffc069f747781008462eae400f7eea40fd79c0",
-    "fx_cosmos.py": "672e71c7f42f1dca51b9139693afb9d4f02de8b41400a4db3ad5d9b3cbd26aeb",
-    "fx_geometry.py": "2f24f117b367cdf09af0c205a57ec7123b61ef3f225cf56eeb37080e8cd746d1",
+    "fx_cosmos.py": "c18e9ea059d76fc32760f3c68ace00c4afe25434296fd96df0ba02b96dc5af47",
+    "fx_geometry.py": "53cb9c27f2e39fbb31e2a26c65a0c5401a3144e2367df670170ec250e020b3b3",
     "lights.py": "13c52a00f81839f9dba7b2319edcf68f209e71954378e28def955b2817df1812",
-    "matrix.py": "a8b3531747abec87cb80bb62b6c0a1f1ed82cc4849e594122adcc385d6457729",
+    "matrix.py": "f6653ad078ba862f066018bd2a5c691be63ec04610e3bd0f14d534d22db0f31f",
     "projector.py": "ab5deb49255fe89014a661ba24b03d4c1e79f9f7a5fe564563167a3e0eeb1cd5",
     "show.py": "e6adb8dfd0fffb88860ab318d3d991cc578e6a096e05e74053c7ee61882fabf5",
     "space_inputs.py": "874bb3192eb5fcc9d5fd269caf23eae381803917b4a95815ba8921d926033c7b",
@@ -159,5 +159,32 @@
       "draw_ms": 13,
       "heartbeat": 1794452255.0193927
     }
-  ]
+  ],
+  "capture_raw_badge_source_sha256": {
+    "app.py": "1d29bf7c4ac065469848948b771daebdab943ad1a6242f35da42a24b04040cb9",
+    "chrome.py": "1d926cf41de069b0669cb406a5438e8bb0c8e08aa16ed86aaadeb39307cd43f6",
+    "expansions.py": "60ee934eb5388f6b020215ea99ffc069f747781008462eae400f7eea40fd79c0",
+    "fx_cosmos.py": "672e71c7f42f1dca51b9139693afb9d4f02de8b41400a4db3ad5d9b3cbd26aeb",
+    "fx_geometry.py": "2f24f117b367cdf09af0c205a57ec7123b61ef3f225cf56eeb37080e8cd746d1",
+    "lights.py": "13c52a00f81839f9dba7b2319edcf68f209e71954378e28def955b2817df1812",
+    "matrix.py": "a8b3531747abec87cb80bb62b6c0a1f1ed82cc4849e594122adcc385d6457729",
+    "projector.py": "ab5deb49255fe89014a661ba24b03d4c1e79f9f7a5fe564563167a3e0eeb1cd5",
+    "show.py": "e6adb8dfd0fffb88860ab318d3d991cc578e6a096e05e74053c7ee61882fabf5",
+    "space_inputs.py": "874bb3192eb5fcc9d5fd269caf23eae381803917b4a95815ba8921d926033c7b",
+    "__init__.py": "e7f7215c4ab93a3aabc8d1d88bda4b3f9c115656371d41603d0b995c6bffd7ea"
+  },
+  "badge_source_sha256": {
+    "app.py": "aa0eb62696e86ba4006ad3a2c17d37deb86b20823a8c54788f5e1fcd9a96d763",
+    "chrome.py": "1d926cf41de069b0669cb406a5438e8bb0c8e08aa16ed86aaadeb39307cd43f6",
+    "expansions.py": "60ee934eb5388f6b020215ea99ffc069f747781008462eae400f7eea40fd79c0",
+    "fx_cosmos.py": "c18e9ea059d76fc32760f3c68ace00c4afe25434296fd96df0ba02b96dc5af47",
+    "fx_geometry.py": "53cb9c27f2e39fbb31e2a26c65a0c5401a3144e2367df670170ec250e020b3b3",
+    "lights.py": "13c52a00f81839f9dba7b2319edcf68f209e71954378e28def955b2817df1812",
+    "matrix.py": "f6653ad078ba862f066018bd2a5c691be63ec04610e3bd0f14d534d22db0f31f",
+    "projector.py": "ab5deb49255fe89014a661ba24b03d4c1e79f9f7a5fe564563167a3e0eeb1cd5",
+    "show.py": "e6adb8dfd0fffb88860ab318d3d991cc578e6a096e05e74053c7ee61882fabf5",
+    "space_inputs.py": "874bb3192eb5fcc9d5fd269caf23eae381803917b4a95815ba8921d926033c7b",
+    "__init__.py": "e7f7215c4ab93a3aabc8d1d88bda4b3f9c115656371d41603d0b995c6bffd7ea"
+  },
+  "badge_source_hash_normalization": "UTF-8 source bytes with CRLF normalized to LF"
 }
