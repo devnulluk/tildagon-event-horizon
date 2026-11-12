@@ -1,0 +1,19 @@
+{
+  "version": "0.2.0",
+  "hardware": "One attached Spaceagon; Windows Bluetooth receiver",
+  "badge_to_pc": {
+    "matching_advertisements_received": 13,
+    "service_data_bytes": 10,
+    "service_uuid": "8dd8332c-6329-45dc-a01b-d0dd6688e1f0",
+    "verified": true
+  },
+  "pc_to_badge": {
+    "verified": false,
+    "reason": "Windows GATT advertiser reported Aborted; no matching over-air receive was recorded on the badge"
+  },
+  "two_physical_badges": {
+    "verified": false,
+    "reason": "Only one physical badge was available"
+  },
+  "note": "Native receive, twelve-peer handling and echo behavior are separately exercised with explicitly synthetic callback input in hardware-swarm-benchmark.json. They are not over-air reception evidence."
+}

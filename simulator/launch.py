@@ -15,11 +15,14 @@ ROOT = Path(__file__).resolve().parents[1]
 HERE = Path(__file__).resolve().parent
 CACHE = Path(os.environ.get("TILDAGON_HORIZON_SIM_ROOT", ROOT / ".simulator")).expanduser().resolve()
 RUN, SIM = CACHE / "run", CACHE / "firmware/sim"
-SCENES = ("intro", "starflight", "tunnel", "terrain", "planet", "kaleidoscope", "blackhole", "finale")
+SCENES = ("intro", "starflight", "tunnel", "terrain", "planet", "swarm", "kaleidoscope", "blackhole", "finale")
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument("--scene", choices=SCENES, help="Start one scene, with a stable mid-scene screenshot position")
-parser.add_argument("--showcase", choices=("tour", "idle"), default="tour")
-parser.add_argument("--seconds", type=float, default=48, help="Recording duration1..180;120 preserves the full native score")
+parser.add_argument("--showcase", choices=("tour", "idle", "swarm"), default="tour")
+parser.add_argument("--swarm", action="store_true", help="Three virtual badges on an in-memory production-protocol BLE air lab; no real radio")
+parser.add_argument("--swarm-stage", choices=("solo", "joined", "trio", "burst", "handover", "departed"),
+                    help="Synthetic protocol preroll for a repeatable still, never physical multi-badge evidence")
+parser.add_argument("--seconds", type=float, default=48, help="Recording duration1..180;140 preserves the full native score")
 parser.add_argument("--record", type=Path)
 parser.add_argument("--soundtrack", type=Path, help="Explicit original WAV input, muxed after capture without changing video pixels")
 parser.add_argument("--video-fps", type=int, default=15)
@@ -33,6 +36,11 @@ parser.add_argument("--action", choices=["joy" + key for key in ("up", "down", "
                     + ["touch%02d" % pad for pad in range(1, 13)], help="One virtual Spaceagon press, for repeatable input checks")
 parser.add_argument("--capture-frames", type=int, default=10)
 options = parser.parse_args()
+options.swarm = options.swarm or options.showcase == "swarm" or bool(options.swarm_stage)
+if options.swarm and options.scene is None:
+    options.scene = "swarm"
+if options.swarm_stage and options.record:
+    parser.error("--swarm-stage is a still/interactive preroll; record the full real-time --showcase swarm instead")
 if not (SIM / "run.py").is_file():
     parser.error("Run Python3.10 tools/prepare_simulator.py first; see simulator/README.md")
 if sum(bool(value) for value in (options.record, options.screenshot, options.gallery)) > 1:
@@ -65,18 +73,25 @@ shutil.copyfile(ROOT / "tildagon.toml", target / "tildagon.toml")
     "ring_brightness": .15, "eeh_brightness": .03, "matrix_brightness": .12,
     "quality": options.quality, "adaptive_quality": False,
     "space_tilt": True, "space_joystick": True, "space_touch": True, "space_proximity": False,
+    "swarm_enabled": options.swarm,
     "eeh": {"slot": 6, "type": "EEH Logo"} if options.expansions else None,
 }), encoding="utf-8")
-source_hashes = {source.name: hashlib.sha256(source.read_bytes()).hexdigest() for source in target.glob("*.py")}
+from provenance import source_hashes as hash_sources, NORMALIZATION
+source_hashes, raw_source_hashes = hash_sources(target)
 
 recorder = None
 if options.record:
     from film_capture import FrameRecorder
     recorder = FrameRecorder(CACHE, options.record, options.seconds, options.video_fps, options.record_view, options.showcase)
     recorder.source_hashes = source_hashes
-    recorder.sequence_mode = "manual-scene-cuts" if options.showcase == "tour" and not options.scene and options.seconds < 110 else "native-score"
+    recorder.raw_source_hashes = raw_source_hashes
+    recorder.hash_normalization = NORMALIZATION
+    recorder.sequence_mode = "manual-scene-cuts" if options.showcase == "tour" and not options.scene and options.seconds < 130 else "native-score"
     recorder.soundtrack = str(soundtrack) if soundtrack else None
     recorder.soundtrack_sha256 = hashlib.sha256(soundtrack.read_bytes()).hexdigest() if soundtrack else None
+    if options.swarm:
+        recorder.sequence_mode = "production-swarm-with-synthetic-BLE-and-local-scene-cuts"
+        recorder.synthetic_radio = True
 
 os.chdir(SIM)
 sys.path.insert(0, str(SIM))
@@ -86,6 +101,7 @@ import settings
 # Suppress the firmware's optional boot overlay in this simulator process.
 # It otherwise covers the first scene captures; no badge setting is touched.
 settings.set("enable_boot_animation", False)
+settings.set("event_horizon.swarm_enabled", options.swarm)
 import pygame
 import _sim
 from system.eventbus import eventbus
@@ -93,7 +109,14 @@ from events.input import Button, ButtonDownEvent, ButtonUpEvent
 from events.keyboard import KEYBOARD_BUTTONS
 import event_horizon.app as app_module
 from event_horizon import expansions, space_inputs
+from event_horizon import ble_link
 from event_horizon.matrix import GRID
+
+swarm_lab = None
+if options.swarm:
+    from swarm_lab import SwarmLab
+    swarm_lab = SwarmLab(app_module.Swarm, app_module.Show, ble_link)
+    app_module.NearbyRadio = swarm_lab.factory
 
 pygame.display.set_caption("Event Horizon - Official Spaceagon Simulator (DEMO)")
 _sim.screen = pygame.display.set_mode((1040, 733))
@@ -234,13 +257,37 @@ class PreviewHorizon(app_module.EventHorizon):
         global preview
         super().__init__()
         preview = self
+        self._lab_stage = -1
+        if swarm_lab:
+            self.swarm = app_module.Swarm(swarm_lab.MAIN_ID, 200)
+            self._swarm_view = self.swarm.view(self._local_frame(), 0)
         if options.scene:
             self.show.select(SCENES.index(options.scene))
             if options.screenshot:
                 self.show.position += int(self.show.frame()["duration_ms"] * .45)
+        if swarm_lab and options.swarm_stage:
+            original_focus = getattr(self, "_focused", True)
+            self._focused = True
+            target_ms = {"solo": 0, "joined": 8000, "trio": 17000, "burst": 23100,
+                         "handover": 46000, "departed": 59000}[options.swarm_stage]
+            for now in range(0, target_ms + 1, 100):
+                self.clock_ms = now
+                self.show.advance(100)
+                swarm_lab.advance(now)
+                self._link_tick(now)
+            self.show.select(SCENES.index(options.scene))
+            self.show.position += int(self.show.frame()["duration_ms"] * .45)
+            self._ticks = app_module.time.ticks_ms()
+            self._focused = original_focus
 
     def _now(self):
         value = super()._now()
+        if swarm_lab:
+            swarm_lab.advance(value, active=recorder is None or recorder.start is not None)
+            if options.showcase == "swarm" and swarm_lab.stage != self._lab_stage:
+                cue = ("swarm", "swarm", "swarm", "swarm", "swarm", "starflight", "starflight", "blackhole", "swarm")[swarm_lab.stage]
+                self.show.select(SCENES.index(cue))
+                self._lab_stage = swarm_lab.stage
         if recorder is not None and recorder.start is None:
             # Warm-up frames stay at score zero; the first recorded frame is
             # the real initial chapter, not a late sample of the boot period.
@@ -258,6 +305,7 @@ gallery_images, gallery_proof = [], []
 last_status = None
 native_surface = None
 last_tour_index = -1
+swarm_stills = set()
 
 
 def side_text(value, y, size=18, colour=(175, 198, 220)):
@@ -273,7 +321,7 @@ def native_frame():
 
 
 def save_gallery():
-    sheet = pygame.Surface((960, 624))
+    sheet = pygame.Surface((960, 56 + math.ceil(len(SCENES) / 4) * 282))
     sheet.fill((5, 9, 20))
     heading = pygame.font.Font(None, 23).render("EVENT HORIZON / OFFICIAL SIMULATOR / PROCEDURAL DEMO", True, (230, 238, 250))
     sheet.blit(heading, ((960 - heading.get_width()) // 2, 17))
@@ -285,7 +333,9 @@ def save_gallery():
     pygame.image.save(sheet, str(gallery / "contact-sheet.png"))
     with open(str(gallery / "gallery-proof.json"), "w") as handle:
         json.dump({"official_simulator": True, "physical_camera_footage": False,
-                   "source_hashes": source_hashes, "frames": gallery_proof}, handle, indent=2)
+                   "source_hashes": source_hashes, "badge_source_sha256": source_hashes,
+                   "capture_raw_badge_source_sha256": raw_source_hashes,
+                   "badge_source_hash_normalization": NORMALIZATION, "frames": gallery_proof}, handle, indent=2)
 
 
 def render_gui():
@@ -296,13 +346,23 @@ def render_gui():
     side_text("EVENT HORIZON", 20, 31, (210, 240, 255))
     side_text("OFFICIAL SDL/ctx SIMULATOR", 56, 17)
     side_text("PROCEDURAL DEMO / NO USB", 79, 17, (255, 201, 95))
-    side_text("Touch ring / keys1..0,-,=", 105, 19)
-    for index, (x, y) in enumerate(touch_positions):
+    if swarm_lab:
+        state = swarm_lab.snapshot(preview.clock_ms if preview else 0)
+        side_text("SYNTHETIC BLE / 3 VIRTUAL BADGES", 103, 17, (255, 201, 95))
+        side_text("No physical radio/range test", 126, 17)
+        for index, peer in enumerate(state["peers"]):
+            y = 154 + index * 48
+            side_text(peer["label"] + (" / ADVERTISING" if peer["advertising"] else " / QUIET"), y, 19,
+                      (97, 226, 239) if index == 0 else (255, 190, 92))
+            side_text("%d peers / %s" % (peer["count"], peer["role"]), y + 22, 17)
+    if not swarm_lab:
+        side_text("Touch ring / keys1..0,-,=", 105, 19)
+    for index, (x, y) in enumerate(touch_positions if not swarm_lab else []):
         down = front.touch_states["TOUCH%02d" % (index + 1)][0]
         pygame.draw.circle(_sim.screen, (55, 206, 245) if down else (25, 51, 75), (int(x), int(y)), 12)
         label = pygame.font.Font(None, 17).render(str(index + 1), True, (220, 240, 250))
         _sim.screen.blit(label, (x - label.get_width() / 2, y - 7))
-    for name, rectangle in JOY_BOXES.items():
+    for name, rectangle in (JOY_BOXES.items() if not swarm_lab else []):
         down = front.joystick_states[name[3:]][0]
         pygame.draw.rect(_sim.screen, (45, 170, 214) if down else (18, 43, 65), rectangle, border_radius=4)
         glyph = {"JOYUP": "^", "JOYLEFT": "<", "JOYRIGHT": ">", "JOYDOWN": "v", "JOYFIRE": "O"}[name]
@@ -340,6 +400,9 @@ def render_gui():
                        "matrix_mode": preview.matrix.displayed_mode, "matrix_frames": preview.matrix.frames_written,
                        "quality_requested": options.quality, "quality_rendered": preview._quality,
                        "adaptive_quality": False, "draw_ms": preview.metrics["draw_ms"], "heartbeat": host_time.time()}
+        if swarm_lab:
+            last_status.update(swarm_lab.snapshot(preview.clock_ms), nearby_count=preview._swarm_view["count"],
+                               nearby_role=preview._swarm_view["role"], preroll_stage=options.swarm_stage)
         if frames % 15 == 0 or frames == 5:
             with open(str(RUN / "status.json"), "w") as handle:
                 json.dump(last_status, handle)
@@ -362,8 +425,12 @@ def render_gui():
                 preview.show.position += int(preview.show.frame()["duration_ms"] * .45)
                 gallery_since = frames
         if recorder and frames >= 5:
-            if options.showcase == "tour" and not options.scene and options.seconds < 110:
-                index = min(7, int(recorder.elapsed() * 8 / options.seconds))
+            if options.showcase == "swarm" and swarm_lab:
+                if swarm_lab.stage != last_tour_index:
+                    recorder.events.append({"at": recorder.elapsed(), "label": swarm_lab.label})
+                    last_tour_index = swarm_lab.stage
+            elif options.showcase == "tour" and not options.scene and options.seconds < 130:
+                index = min(len(SCENES) - 1, int(recorder.elapsed() * len(SCENES) / options.seconds))
                 if index != last_tour_index:
                     preview.show.select(index)
                     recorder.events.append({"at": recorder.elapsed(), "label": SCENES[index].upper()})
@@ -373,9 +440,25 @@ def render_gui():
                 last_tour_index = frame["index"]
             recorded = native_surface if options.record_view == "lcd" else _sim.screen.copy()
             first_capture = recorder.start is None
-            finished = recorder.capture(pygame, recorded, {"label": frame["title"], "scene": frame["scene"],
+            detail = {"label": swarm_lab.label if swarm_lab else frame["title"], "scene": frame["scene"],
                                                   "time_ms": frame["time_ms"], "quality": preview._quality,
-                                                  "ring_rgb": list(_sim._sim.led_state[1:13])})
+                                                  "ring_rgb": list(_sim._sim.led_state[1:13])}
+            if swarm_lab:
+                detail.update(nearby_count=preview._swarm_view["count"], nearby_role=preview._swarm_view["role"],
+                              synthetic_radio=True, stage=swarm_lab.stage)
+                since = swarm_lab.elapsed - swarm_lab.STAGES[swarm_lab.stage][0]
+                delay = 500 if swarm_lab.stage in (3, 4) else 1200
+                if recorder.start is not None and swarm_lab.stage not in swarm_stills and since >= delay:
+                    swarm_stills.add(swarm_lab.stage)
+                    stem = recorder.output.stem + "-%02d" % (swarm_lab.stage + 1)
+                    lcd_path = recorder.output.with_name(stem + "-lcd.png")
+                    window_path = recorder.output.with_name(stem + ".png")
+                    pygame.image.save(native_surface, str(lcd_path))
+                    pygame.image.save(_sim.screen, str(window_path))
+                    recorder.stills.append({"label": swarm_lab.label, "lcd": lcd_path.name,
+                                            "window": window_path.name, "nearby_count": preview._swarm_view["count"],
+                                            "nearby_role": preview._swarm_view["role"], "at": recorder.elapsed()})
+            finished = recorder.capture(pygame, recorded, detail)
             if first_capture:
                 preview._ticks = app_module.time.ticks_ms()
             if finished:
@@ -398,7 +481,9 @@ except SystemExit as stopped:
         with open(str(SIM / "flow3r.png"), "rb") as source, open(str(capture_output), "wb") as destination:
             shutil.copyfileobj(source, destination)
         with open(str(capture_output.with_suffix(".json")), "w") as handle:
-            json.dump(dict(last_status, source_hashes=source_hashes), handle, indent=2)
+            json.dump(dict(last_status, source_hashes=source_hashes, badge_source_sha256=source_hashes,
+                           capture_raw_badge_source_sha256=raw_source_hashes,
+                           badge_source_hash_normalization=NORMALIZATION), handle, indent=2)
         print("Official Event Horizon screenshot:", capture_output)
     if recorder and recorder.finished and stopped.code in (None, 0):
         logfile = str(recorder.directory / "encode.log")
@@ -409,4 +494,6 @@ except SystemExit as stopped:
         if result.returncode:
             raise SystemExit("Encoding failed; see " + logfile)
         print("Official Event Horizon recording:", recorder.output)
+    if swarm_lab:
+        swarm_lab.close()
     raise

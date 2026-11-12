@@ -2,6 +2,8 @@
 
 120 BPM, D minor, stereo PCM. This is a video soundtrack, not badge runtime
 audio. Synthesis and arrangement are deterministic and covered by LICENSE.
+The 48/120-second arrangements have eight acts for video editing, independent
+of the current nine-chapter 140-second badge loop.
 """
 import argparse
 from array import array

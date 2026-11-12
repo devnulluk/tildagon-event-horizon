@@ -48,10 +48,47 @@ Proximity gestures are disabled. The optional EEH and Liteloop diagrams are simu
 .\Launch-Simulator.ps1 -Gallery .\docs\gallery -Expansions
 .\Launch-Simulator.ps1 -Scene tunnel -Screenshot -OutputPath .\tunnel.png
 .\Launch-Simulator.ps1 -Record .\event-horizon-trailer.mp4 -Seconds 48 -Expansions
-.\Launch-Simulator.ps1 -Record .\event-horizon-full.mp4 -Seconds 120 -Expansions
+.\Launch-Simulator.ps1 -Record .\event-horizon-full.mp4 -Seconds 140 -Expansions
+.\Launch-Simulator.ps1 -Showcase swarm -Record .\swarm-preview.mp4 -Seconds 60 -Expansions
 ```
 
-The 48-second trailer selects all eight chapters in six-second sections while animation continues in real time. The 120-second capture follows the app's unmodified two-minute score from zero. Frame metadata declares which mode was used. Recordings keep actual monotonic capture timing, use no motion interpolation, and export H.264 MP4, GIF preview, poster, contact sheet and JSON provenance. Native LCD crops are 240×240; full-window captures retain the labelled simulator/virtual-control panel.
+The current 48-second trailer selects all nine chapters while animation continues
+in real time. The 140-second capture follows the app's unmodified score from
+zero. The earlier 0.1 films retain their eight-chapter, 48/120-second scope. Frame
+metadata declares which mode was used. Recordings keep actual monotonic capture
+timing, use no motion interpolation, and export H.264 MP4, GIF preview, poster,
+contact sheet and JSON provenance. Native LCD crops are 240×240; full-window
+captures retain the labelled simulator/virtual-control panel.
+
+## Three virtual badges
+
+`-Swarm` starts a synthetic BLE-air lab with the production app and two additional
+production `Swarm`/`Show` instances. It never starts a real Bluetooth adapter.
+The lab uses the actual ten-byte payload and BLE service-data wrapper/parser,
+repeated advertisements, two payload updates per second and bounded receive
+queues. Artificial session IDs are deterministic; no physical address or nearby
+device is read. The optional RSSI value is synthetic and is not distance.
+
+The sixty-second `-Showcase swarm` sequence covers solo, one peer joining, three
+virtual badges, two remote boosts, conductor handover, peers leaving and expiry
+back to solo. Local scene cuts expose both the full Gravitational Choir scene and
+its sparse overlays; peer packets do not select scenes or pause another badge.
+The script ends with both virtual peers quiet; the interactive app then continues
+in solo mode. Radio status and encoded video labels explicitly identify this as
+a simulation, not evidence from two physical badges or a radio-range test.
+
+Repeatable stills can preplay the same real packet/state path:
+
+```powershell
+.\Launch-Simulator.ps1 -Swarm -SwarmStage trio -Screenshot -OutputPath .\swarm-trio.png -Expansions
+.\Launch-Simulator.ps1 -Swarm -SwarmStage burst -Screenshot -OutputPath .\swarm-burst.png -Expansions
+```
+
+Stages are `solo`, `joined`, `trio`, `burst`, `handover` and `departed`. A still's
+metadata records its synthetic preroll. `-SwarmStage` cannot be combined with a
+recording; record the real-time script instead. The Python equivalents are
+`--swarm`, `--swarm-stage` and `--showcase swarm`. Normal simulator runs leave
+nearby radio disabled unless this explicit virtual lab is selected.
 
 An original 120 BPM score can accompany the exported video:
 
@@ -60,7 +97,12 @@ py -3.10 tools/compose_soundtrack.py --seconds 48 --output .\score-48.wav
 .\Launch-Simulator.ps1 -Record .\event-horizon-trailer.mp4 -Seconds 48 -Soundtrack .\score-48.wav -Expansions
 ```
 
-Use the 120-second composition for the full film. Audio is muxed as AAC with the already-encoded video stream copied unchanged and the requested exact duration enforced. A silent MP4 is retained, and GIF previews are silent. This soundtrack is for the video; the badge app does not play it through hardware audio.
+The composer provides the existing 48/120-second video arrangements; it does not
+generate a new 140-second arrangement. The swarm preview may use the first sixty
+seconds of the original 120-second composition. Audio is muxed as AAC with the
+already-encoded video stream copied unchanged and the requested exact duration
+enforced. A silent MP4 is retained, and GIF previews are silent. This soundtrack
+is for the video; the badge app does not play it through hardware audio.
 
 The Python CLI accepts `--scene`, `--gallery`, `--screenshot`, `--output`, `--record`, `--seconds`, `--showcase`, `--quality` and `--expansions`. Set `SDL_VIDEODRIVER=dummy` for headless captures; the PowerShell wrapper does this automatically. Video performance reflects the desktop simulator and does not establish physical badge FPS.
 

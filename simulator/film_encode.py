@@ -30,21 +30,21 @@ def centered(draw, xy, value, size, colour):
     draw.text(xy, value, font=font(size), fill=colour, anchor="mm")
 
 
-def framed(source, label, view):
+def framed(source, label, view, synthetic_radio=False):
     if view == "lcd":
         canvas = Image.new("RGB", (720, 900), "#080d18")
         canvas.paste(source.resize((720, 720), Image.Resampling.NEAREST), (0, 90))
         draw = ImageDraw.Draw(canvas)
         centered(draw, (360, 30), "EVENT HORIZON / SPACEAGON", 27, "#f0f6ff")
         centered(draw, (360, 64), label, 22, "#88bdd9")
-        centered(draw, (360, 839), "OFFICIAL SIMULATOR - PROCEDURAL DEMO", 22, "#ffd06c")
-        centered(draw, (360, 873), "Real ctx-rendered pixels / no camera footage", 18, "#a0aec0")
+        centered(draw, (360, 839), "OFFICIAL SIMULATOR / VIRTUAL BLE PEERS" if synthetic_radio else "OFFICIAL SIMULATOR - PROCEDURAL DEMO", 22, "#ffd06c")
+        centered(draw, (360, 873), "Production codec / no physical radio test" if synthetic_radio else "Real ctx-rendered pixels / no camera footage", 18, "#a0aec0")
     else:
         canvas = Image.new("RGB", (1040, 816), "#080d18")
         canvas.paste(source.convert("RGB"), (0, 48))
         draw = ImageDraw.Draw(canvas)
         centered(draw, (520, 24), "EVENT HORIZON - " + label, 24, "#f0f6ff")
-        centered(draw, (520, 798), "OFFICIAL SDL/ctx SIMULATOR / SYNTHETIC DEMO / NOT CAMERA FOOTAGE", 18, "#ffd06c")
+        centered(draw, (520, 798), "SIMULATED BLE / THREE VIRTUAL BADGES / NO PHYSICAL RADIO TEST" if synthetic_radio else "OFFICIAL SDL/ctx SIMULATOR / SYNTHETIC DEMO / NOT CAMERA FOOTAGE", 18, "#ffd06c")
     return canvas
 
 
@@ -76,7 +76,7 @@ def encode(directory):
         if not source.is_relative_to(directory) or source.suffix != ".png":
             raise ValueError("Invalid captured frame path")
         with Image.open(source) as native:
-            image = framed(native.convert("RGB"), frame.get("label", "DEMO"), view)
+            image = framed(native.convert("RGB"), frame.get("label", "DEMO"), view, capture.get("synthetic_radio", False))
         canvas = canvases / ("canvas-%05d.png" % index)
         image.save(canvas)
         next_time = frames[index + 1]["elapsed"] if index + 1 < len(frames) else duration
@@ -96,7 +96,7 @@ def encode(directory):
                             "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-t", str(exact_duration),
                             "-movflags", "+faststart", str(output)])
     gif = output.with_suffix(".gif")
-    gif_duration = min(duration, 48)
+    gif_duration = min(duration, 60 if capture.get("synthetic_radio") else 48)
     gif_width = 480 if view == "lcd" else 780
     filters = ("fps=10,scale=%d:-1:flags=lanczos,split[s0][s1];" % gif_width
                + "[s0]palettegen=max_colors=128:stats_mode=diff[p];[s1][p]paletteuse=dither=bayer:bayer_scale=4")
@@ -114,7 +114,7 @@ def encode(directory):
         selected.append((event.get("label", "DEMO"), frame))
     for index, (label, frame) in enumerate(selected):
         with Image.open(directory / frame["file"]) as native:
-            poster = framed(native.convert("RGB"), label, view)
+            poster = framed(native.convert("RGB"), label, view, capture.get("synthetic_radio", False))
             poster.save(output.with_name(output.stem + "-scene-%02d.png" % (index + 1)))
     # LCD crops are native240px; window contact cells are fit within320px.
     cells = selected[:16]

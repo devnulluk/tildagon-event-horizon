@@ -1,4 +1,4 @@
-"""A deterministic two-minute score: no frame-count-dependent animation."""
+"""A deterministic140-second score: no frame-count-dependent animation."""
 import math
 
 BPM = 120
@@ -8,8 +8,9 @@ SCENES = (
     ("tunnel", "02 / HYPERSPACE", 16000),
     ("terrain", "03 / SIGNAL LOST", 16000),
     ("planet", "04 / NEW WORLDS", 16000),
-    ("kaleidoscope", "05 / CRYSTAL MIND", 16000),
-    ("blackhole", "06 / EVENT HORIZON", 20000),
+    ("swarm", "05 / GRAVITATIONAL CHOIR", 20000),
+    ("kaleidoscope", "06 / CRYSTAL MIND", 16000),
+    ("blackhole", "07 / EVENT HORIZON", 20000),
     ("finale", "WE ARE MADE OF STARS", 12000),
 )
 TOTAL_MS = sum(row[2] for row in SCENES)
@@ -100,5 +101,11 @@ def light_frame(frame, brightness=.15, count=12):
         level = min(1, level + frame.get("burst", 0)*.2)
         at=(int(hue*256)&255)*3
         scale=int(brightness*level*255)
-        result.append((_PALETTE[at]*scale//255,_PALETTE[at+1]*scale//255,_PALETTE[at+2]*scale//255))
+        colour=(_PALETTE[at]*scale//255,_PALETTE[at+1]*scale//255,_PALETTE[at+2]*scale//255)
+        group=frame.get("swarm_colour")
+        if (frame.get("swarm_count",0)>0 and isinstance(group,(tuple,list)) and len(group)==3
+                and all(finite(value) and 0<=value<=255 for value in group)):
+            group_scale=brightness*(.18+.58*pulse+.16*orbit)
+            colour=tuple(int(colour[channel]*.62+group[channel]*group_scale*.38) for channel in range(3))
+        result.append(colour)
     return result

@@ -27,7 +27,7 @@ except ImportError:
 
 ROOT = Path(__file__).resolve().parents[1]
 CATEGORIES = {"Badge", "Music", "Media", "Apps", "Games", "Background", "Pattern"}
-MAX_RUNTIME_BYTES = 100_000
+MAX_RUNTIME_BYTES = 160_000
 MAX_DOWNLOAD_BYTES = 2_000_000
 STORE = "https://apps.badge.emfcamp.org"
 
@@ -98,7 +98,7 @@ def runtime_files(root, manifest):
     files.update({manifest: root / manifest, "LICENSE": root / "LICENSE"})
     require(all(not p.is_symlink() for p in files.values()), "Runtime files must not be symbolic links")
     total = sum(p.stat().st_size for p in files.values())
-    require(total <= MAX_RUNTIME_BYTES, "Runtime payload exceeds100000bytes")
+    require(total <= MAX_RUNTIME_BYTES, "Runtime payload exceeds160000bytes")
     exported = None
     for name, path in files.items():
         if path.suffix != ".py":
@@ -144,7 +144,7 @@ def validate_archive(content, files):
             require(name in files and name not in found, "Unexpected or duplicate archived file: " + name)
             require(0 <= member.size <= MAX_RUNTIME_BYTES, "Oversized archived runtime file")
             payload += member.size
-            require(payload <= MAX_RUNTIME_BYTES, "Archived payload exceeds100000bytes")
+            require(payload <= MAX_RUNTIME_BYTES, "Archived payload exceeds160000bytes")
             data = archive.extractfile(member).read(member.size + 1)
             require(len(data) == member.size, "Truncated archived file")
             expected = files[name].read_bytes()

@@ -1,9 +1,10 @@
 {
-  "version": "0.1.0",
+  "version": "0.2.0",
   "all_bytes_verified": true,
   "runtime_files": [
     "__init__.py",
     "app.py",
+    "ble_link.py",
     "chrome.py",
     "expansions.py",
     "fx_cosmos.py",
@@ -13,6 +14,8 @@
     "projector.py",
     "show.py",
     "space_inputs.py",
+    "swarm.py",
+    "swarm_fx.py",
     "tildagon.toml",
     "LICENSE",
     "metadata.json",
@@ -20,5 +23,8 @@
   ],
   "phone_app_untouched": true,
   "firmware_untouched": true,
-  "startup": "verified native 370-second soak; see hardware-soak.json"
+  "configuration_preserved": true,
+  "startup": "verified",
+  "radio": "ready",
+  "final_running_version": "0.2.0"
 }

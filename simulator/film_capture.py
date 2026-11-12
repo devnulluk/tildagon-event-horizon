@@ -58,12 +58,17 @@ class FrameRecorder:
                  "motion_interpolation": False, "output": str(self.output),
                  "native_source_resolution": [240, 240] if self.view == "lcd" else [1040, 733],
                  "scene_choreography": getattr(self, "sequence_mode", "native-score"),
-                 "synthetic_inputs_sequenced": getattr(self, "sequence_mode", "native-score") == "manual-scene-cuts",
+                 "synthetic_inputs_sequenced": getattr(self, "sequence_mode", "native-score") != "native-score",
                  "idle_waits_skipped": False,
                  "events": self.events, "badge_source_sha256": self.source_hashes,
+                 "capture_raw_badge_source_sha256": getattr(self, "raw_source_hashes", self.source_hashes),
+                 "badge_source_hash_normalization": getattr(self, "hash_normalization", "Exact captured source bytes"),
                  "stills": self.stills,
                  "_soundtrack_file": getattr(self, "soundtrack", None),
                  "soundtrack_sha256": getattr(self, "soundtrack_sha256", None),
                  "frames": self.frames}
+        if getattr(self, "synthetic_radio", False):
+            value.update(synthetic_radio=True, virtual_badges=3, physical_multibadge_test=False,
+                         radio_protocol="Production10-byte BLE service-data codec over bounded in-memory air")
         with _open(str(self.directory / "capture.json"), "w", encoding="utf-8") as handle:
             json.dump(value, handle, indent=2)

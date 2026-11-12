@@ -1,0 +1,20 @@
+{
+  "nearby_radio": "ready",
+  "running": true,
+  "nearby_peers": 0,
+  "swarm_smoke_metrics": {
+    "fps": 6,
+    "draw_ms": 38
+  },
+  "focused": true,
+  "scene": "intro",
+  "eeh_ready": true,
+  "spaceagon": true,
+  "matrix_ready": true,
+  "matrix_frames": 1,
+  "ring_brightness": 0.15,
+  "motion_valid": true,
+  "version": "0.2.0",
+  "eeh_brightness": 0.03,
+  "nearby_enabled": true
+}

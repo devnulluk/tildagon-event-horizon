@@ -246,6 +246,38 @@ class AppControlTests(unittest.TestCase):
 
 
 class AppShutdownTests(unittest.IsolatedAsyncioTestCase):
+    async def test_outer_led_write_failure_cannot_skip_worker_and_expansion_cleanup(self):
+        source, app, hardware, clock = runtime()
+        with patch.object(hardware.leds, "write", side_effect=OSError("Synthetic LED disconnect")):
+            app._stop()
+            app._stop()
+            await asyncio.sleep(0)
+            await asyncio.sleep(0)
+            await asyncio.sleep(0)
+        self.assertTrue(app.radio._closed)
+        self.assertTrue(app.space.closed and app.expansions.closed and app.matrix.closed)
+        self.assertTrue(app.expansions.eeh_frames[-1][2])
+        self.assertTrue(app.matrix.queued[-1][2])
+        self.assertEqual(app.terminations, [True])
+
+    async def test_matrix_queue_failure_still_terminates_and_releases_every_owned_resource(self):
+        source, app, hardware, clock = runtime()
+        with patch.object(app.matrix, "queue", side_effect=OSError("Synthetic matrix disconnect")):
+            app._stop()
+            await asyncio.sleep(0)
+            await asyncio.sleep(0)
+        self.assertTrue(app.radio._closed)
+        self.assertTrue(app.space.closed and app.expansions.closed and app.matrix.closed)
+        self.assertEqual(hardware.leds[1:13], [(0, 0, 0)] * 12)
+        self.assertEqual(app.terminations, [True])
+
+    async def test_final_matrix_close_failure_does_not_skip_framework_termination(self):
+        source, app, hardware, clock = runtime()
+        with patch.object(app.matrix, "close", side_effect=OSError("Synthetic close failure")):
+            with self.assertRaises(OSError):
+                await app._finish_stop()
+        self.assertEqual(app.terminations, [True])
+
     async def test_repeated_stop_queues_one_dark_frame_and_terminates_once(self):
         source, app, hardware, clock = runtime()
         app._stop()

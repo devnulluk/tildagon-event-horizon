@@ -1,6 +1,6 @@
 """Small typographic/iris choreography around the procedural worlds."""
 import math
-from .show import sine
+from .show import sine, SCENES
 
 TAU = math.pi * 2
 WHITE = (.90, .96, 1)
@@ -57,8 +57,8 @@ def title(ctx, frame, finale=False):
 def overlay(ctx, frame, hud=False, paused=False, metrics=None):
     local, duration = frame["local_ms"], frame["duration_ms"]
     if frame["scene"] not in ("intro", "finale") and (local < 2600 or hud):
-        ctx.rgb(.005,.012,.035).round_rectangle(-92,-103,184,23,9).fill()
-        text(ctx, frame["title"], -91, 12, 174, CYAN)
+        ctx.rgb(.005,.012,.035).round_rectangle(-87,-96,174,23,9).fill()
+        text(ctx, frame["title"], -84, 12, 154, CYAN, minimum=9)
     if hud or paused:
         ctx.rgb(.005,.012,.035).round_rectangle(-89,80,178,22,8).fill()
         value = "PAUSED / C TO RESUME" if paused else "B / E: SCENE   A: BOOST"
@@ -66,8 +66,8 @@ def overlay(ctx, frame, hud=False, paused=False, metrics=None):
     if hud and metrics:
         text(ctx, "%d FPS / %d MS" % (metrics.get("fps",0), metrics.get("draw_ms",0)), 67, 10, 180, (.54,.72,.80))
     # A segmented orbital chapter gauge along the bottom rim.
-    for index in range(8):
-        angle = math.pi*.34 + index*math.pi*.046
+    for index in range(len(SCENES)):
+        angle = math.pi*.34 + index*math.pi*.32/max(1,len(SCENES)-1)
         x,y = math.cos(angle)*110,math.sin(angle)*110
         colour = CYAN if index == frame["index"] else (.10,.18,.28)
         ctx.rgb(*colour).arc(x,y,2,0,TAU,False).fill()

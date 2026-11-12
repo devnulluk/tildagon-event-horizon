@@ -1,10 +1,11 @@
 # Controls and settings
 
-Event Horizon runs its eight-chapter, 120-second loop immediately after launch.
+Event Horizon 0.2 runs its nine-chapter, 140-second loop immediately after launch.
 Animation uses elapsed time rather than frame counts. Pausing holds the scene
 position; chapter navigation still works while paused. A boost briefly adds
 energy to the current world and light pattern without exceeding brightness
-settings.
+settings. With Nearby enabled, a local boost is also advertised to other
+copies; a received boost adds a visual response without being rebroadcast.
 
 ## Six physical buttons
 
@@ -37,17 +38,18 @@ physical A–F buttons retain their own mappings.
 
 Tap a pad to choose a chapter. Moving across adjacent pads produces a
 next/previous rotation gesture. A rotation is not also treated as a tap.
-The twelve pads map onto eight chapters as follows:
+The twelve pads map onto nine chapters as follows:
 
 | Pads | Chapter |
 | --- | --- |
 | 1–2 | Opening |
 | 3 | Departure / starflight |
-| 4–5 | Hyperspace / tunnel |
-| 6 | Signal Lost / terrain |
-| 7–8 | New Worlds / planet |
-| 9 | Crystal Mind / kaleidoscope |
-| 10–11 | Event Horizon / black hole |
+| 4 | Hyperspace / tunnel |
+| 5–6 | Signal Lost / terrain |
+| 7 | New Worlds / planet |
+| 8 | Gravitational Choir / nearby constellation |
+| 9–10 | Crystal Mind / kaleidoscope |
+| 11 | Event Horizon / black hole |
 | 12 | Finale |
 
 Touch-ring gestures are ignored while settings are open. Joystick navigation
@@ -88,12 +90,18 @@ twelve touch pads and mouse-operated virtual controls.
 | Matrix | Maximum Liteloop brightness | 12% |
 | Detail | Maximum drawing detail; adaptation can reduce it on slow frames | 90% |
 | Tilt | Relative scene viewpoint motion | On |
+| Nearby | Bluetooth advertisement discovery and shared visual events | On |
 
 Numeric rows move in one-percentage-point steps and are clamped to 0–100%.
 Brightness values are independent, including zero. Existing local brightness
 preferences can supply the initial ring/logo levels. Changes are stored under
 the app's own firmware settings when settings close or the app exits. Keyboard
 T is saved on a normal exit as well.
+
+Nearby is the sixth row. Switch it off to stop this app's advertising and
+scanning and clear the peer view. It does not change Wi-Fi settings. If another
+app already owns Bluetooth, Event Horizon leaves that radio alone and continues
+the solo show. Detailed behaviour is in the [Nearby guide](SWARM.md).
 
 Recognized optional expansions are driven only when available and not already
 owned by another driver. If the matrix is absent, removed or fails, the LCD and

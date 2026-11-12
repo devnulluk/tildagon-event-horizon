@@ -9,7 +9,7 @@ See [Publish your app](https://tildagon.badge.emfcamp.org/tildagon-apps/publish/
 This app uses one root `tildagon.toml`, with the `Media` category and MIT license.
 `app.py` defines `EventHorizon` and `__app_export__ = EventHorizon`. Both frontboards
 are declared optional; a bare badge can run the show. Keep the manifest version
-and release tag aligned, initially `0.1.0` / `v0.1.0`.
+and release tag aligned: `0.2.0` / `v0.2.0` for the Nearby edition.
 
 The current [manifest schema](https://github.com/emfcamp/badge-2024-app-store/blob/main/packages/tildagon-app/src/TildagonAppManifest.ts)
 requires name/category and author/license/source URL/description/version. It has
@@ -21,7 +21,7 @@ is the source of truth for that behavior.
 
 ## Keep the badge download small
 
-Release **0.1.0** was verified in the live store on 12 November 2026. The store
+Historical release **0.1.0** was verified in the live store on 12 November 2026. The store
 record points to commit `706805e8141d389e01bd4011d3b03a2347a9c3b2`; its cached
 download is 27,062 bytes and contains 13 runtime files (88,170 bytes unpacked).
 The validator checked every file against the release source. The
@@ -38,7 +38,10 @@ This follows the official publishing guide's `export-ignore` advice and Git's
 [archive attributes](https://git-scm.com/docs/gitattributes#_creating_an_archive).
 An uploaded small release asset cannot repair an oversized source archive.
 Check the actual archive before publishing; the badge needs memory to download
-and decompress it. Our validator limits the runtime payload to 100,000 bytes.
+and decompress it. The current validator limits the runtime payload to
+160,000 bytes, including the bounded Nearby model, renderer and BLE transport.
+Bluetooth remains optional at runtime; unavailable or busy radios leave the
+solo show usable.
 
 With Python 3.11+ (or Python 3.10 plus `tomli`) and Git:
 
@@ -60,7 +63,7 @@ After simulator, hardware and content checks pass:
    `https://github.com/devnulluk/tildagon-event-horizon`.
 2. Apply the `tildagon-app` repository topic.
 3. Create a normal published GitHub release for the tested commit, such as
-   `v0.1.0`. A tag alone is insufficient. Keep unready releases as drafts.
+   `v0.2.0`. A tag alone is insufficient. Keep unready releases as drafts.
 4. Download the release's **Source code (tar.gz)** and validate that archive,
    then wait for indexing and verify the store's own cached download.
 

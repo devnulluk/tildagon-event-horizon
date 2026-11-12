@@ -10,6 +10,12 @@ generative source and generated recordings are provided under the project's
 This audio is for the trailer video. The badge app does not play it and does not
 assume a speaker or audio output exists on the hardware.
 
+The generator retains the original eight-act, 48- and 120-second video
+arrangements. These are independent of the current nine-chapter, 140-second
+badge loop: the music has no separate Gravitational Choir act. Video edits may
+use an excerpt, with the chosen arrangement and duration recorded in their
+media metadata.
+
 The music is in D minor at 120 BPM. Its repeating harmonic colours are D minor
 add9, B-flat major7, F major add9 and C add9. An original D–F–A–E melodic figure
 connects the acts. Warm detuned pads, a controlled three-harmonic chiptune arp,
@@ -17,7 +23,7 @@ sub/upper bass, synthesized pitch-swept kick, noise snare and hats build toward
 the black-hole scene. A quieter planet act provides contrast. Cross-channel
 dotted-eighth echoes provide width; a final tonic and fade close the piece.
 
-| Act | Full score | Trailer |
+| Act | 120-second arrangement | 48-second arrangement |
 | --- | --- | --- |
 | Intro | 0–8 s | 0–6 s |
 | Starflight | 8–24 s | 6–12 s |

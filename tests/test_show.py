@@ -11,9 +11,9 @@ spec.loader.exec_module(show)
 
 
 class ShowTests(unittest.TestCase):
-    def test_scene_durations_and_boundaries_match_the_two_minute_score(self):
-        self.assertEqual(show.TOTAL_MS, 120000)
-        self.assertEqual([row[2] for row in show.SCENES], [8000, 16000, 16000, 16000, 16000, 16000, 20000, 12000])
+    def test_scene_durations_and_boundaries_match_the_extended_score(self):
+        self.assertEqual(show.TOTAL_MS, 140000)
+        self.assertEqual([row[2] for row in show.SCENES], [8000, 16000, 16000, 16000, 16000, 20000, 16000, 20000, 12000])
         performance = show.Show()
         for index, start in enumerate(show.STARTS):
             performance.position = start
@@ -25,8 +25,8 @@ class ShowTests(unittest.TestCase):
 
     def test_skipped_frames_advance_by_elapsed_time_and_wrap_without_extra_cues(self):
         direct, fragmented = show.Show(), show.Show()
-        direct.advance(120000 * 3 + 97000)
-        for delta in (17000, 50000, 30000, 120000, 120000, 120000):
+        direct.advance(show.TOTAL_MS * 3 + 117000)
+        for delta in (17000, 50000, 50000, show.TOTAL_MS, show.TOTAL_MS, show.TOTAL_MS):
             fragmented.advance(delta)
         self.assertEqual(direct.frame(), fragmented.frame())
         self.assertEqual(direct.frame()["scene"], "blackhole")

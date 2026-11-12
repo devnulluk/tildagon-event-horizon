@@ -6,8 +6,8 @@ category = "Media"
 author = "devnulluk"
 license = "MIT"
 url = "https://github.com/devnulluk/tildagon-event-horizon"
-description = "A standalone Spaceagon/Tildagon light show: cosmic scenes, geometric motion and synchronised LEDs."
-version = "0.1.0"
+description = "A live Spaceagon/Tildagon space odyssey: nine cosmic scenes, LED choreography and nearby Bluetooth badge constellations."
+version = "0.2.0"
 
 [[metadata.capabilities]]
 required = false

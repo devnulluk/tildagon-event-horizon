@@ -1,28 +1,28 @@
 # Event Horizon
 
-A two-minute procedural odyssey for Spaceagon and Tildagon. Fly through a star
-field, dive into a geometric tunnel, skim a wireframe landscape and orbit a
-rotating point planet before the black-hole finale. The round LCD, outer LEDs
-and optional hexpansions follow one 120 BPM score.
+A 140-second procedural odyssey for Spaceagon and Tildagon. Fly through stars,
+dive into a geometric tunnel, skim neon terrain, orbit a rotating planet and
+awaken a constellation with nearby badges. The round LCD, outer LEDs and
+optional hexpansions follow one 120 BPM score.
 
 **[Install from the App Store](https://apps.badge.emfcamp.org/apps/21344014/): code `21344014`.**
 
-![Event Horizon trailer](docs/media/event-horizon-trailer.gif)
+![Simulated nearby-badge preview](docs/gallery/swarm-preview.gif)
 
-[Watch the trailer with original music](docs/media/event-horizon-trailer.mp4) ·
-[Watch the full two-minute film](docs/media/event-horizon-full.mp4) ·
+[Watch the nearby-badge simulator preview](docs/gallery/swarm-preview.mp4) ·
+[Nearby guide](docs/SWARM.md) ·
 [Controls](docs/CONTROLS.md) · [Simulator](simulator/README.md) ·
 [Native validation](docs/VALIDATION.md)
 
-![The eight chapters](docs/gallery/contact-sheet.png)
+![The nine chapters](docs/gallery/contact-sheet.png)
 
 Every scene is generated live from geometry, particles and cached mathematics.
 The app works offline and needs no SD card. Spaceagon adds joystick, touch-ring
 navigation and relative tilt; the six physical buttons also work on Tildagon.
-The show loops after 120 seconds and can be paused, boosted or explored one
+The show loops after 140 seconds and can be paused, boosted or explored one
 scene at a time.
 
-## Eight chapters
+## Nine chapters
 
 | Chapter | Time | Scene |
 | --- | --- | --- |
@@ -31,12 +31,29 @@ scene at a time.
 | Hyperspace | 24–40 s | Rotating geometric tunnel |
 | Signal Lost | 40–56 s | A moving wireframe terrain |
 | New Worlds | 56–72 s | A rotating 3D point planet and satellite |
-| Crystal Mind | 72–88 s | Radial kaleidoscope geometry |
-| Event Horizon | 88–108 s | Lensing rings and an animated accretion disk |
-| Finale | 108–120 s | The closing star sequence |
+| Gravitational Choir | 72–92 s | Nearby stars, aurora, resonance links and shared novas |
+| Crystal Mind | 92–108 s | Radial kaleidoscope geometry |
+| Event Horizon | 108–128 s | Lensing rings and an animated accretion disk |
+| Finale | 128–140 s | The closing star sequence |
 
 The black hole is cinematic artwork. The planet is a synthetic world; the
 scenes are not scientific measurements or a live sky map.
+
+## Nearby badges
+
+Nearby mode is on by default and can be switched off in settings. Other copies
+of Event Horizon 0.2 use Bluetooth advertisements to discover one another,
+share a sampled beat and colour, and react to local or remote boosts. Press A
+briefly or move the Spaceagon joystick up to launch a nova. The new chapter
+turns the group into a luminous constellation; other chapters receive small
+interaction overlays. The show also works alone or with Nearby off.
+
+No pairing, Wi-Fi network, router, account, cloud service or SD card is required.
+Each badge keeps its own chapter and pause controls. Up to twelve recent peers
+are represented, and peers expire after six seconds without a fresh message.
+Constellation positions are artistic rather than measurements of distance or
+bearing. See [SWARM.md](docs/SWARM.md) for usage, status messages, protocol and
+the distinction between simulator demonstrations and physical radio checks.
 
 ## On the badge
 
@@ -61,7 +78,7 @@ the camera and can be disabled. Full mappings, settings and keyboard controls
 are in [CONTROLS.md](docs/CONTROLS.md).
 
 Settings provide separate ring, EEH Logo and Liteloop brightness, a detail
-ceiling and tilt on/off. Fresh brightness defaults are 15%, 3% and 12%
+ceiling, tilt and Nearby on/off. Fresh brightness defaults are 15%, 3% and 12%
 respectively; saved local preferences take precedence. Adaptive detail can
 reduce drawing work within the chosen ceiling. Visual boosts respect the
 brightness levels.
@@ -74,18 +91,25 @@ blanking transfer.
 
 ## Film and soundtrack
 
-The gallery and films are recordings of the official SDL/ctx simulator running
-the production app. They are not camera footage or physical badge frame-rate
-measurements. The 48-second trailer visits all eight chapters in six-second
-cuts; the full film follows the unmodified 120-second show. The
+The current nearby preview runs the production app and three virtual badge
+models through the official SDL/ctx simulator, using in-memory advertisement
+delivery. It is not footage of three physical badges or a measurement of radio
+range or physical frame rate. The
 [gallery notes](docs/gallery/README.md) describe the virtual hardware and capture
 provenance.
+
+The original 0.1 [48-second trailer](docs/media/event-horizon-trailer.mp4) and
+[120-second film](docs/media/event-horizon-full.mp4) remain as historical
+recordings of the earlier eight-chapter edition. They do not include Nearby
+mode or the new chapter.
 
 **Signal Beyond** is an original 120 BPM generative synth/chiptune score, with
 pads, arpeggios, bass and synthesized percussion. It accompanies the videos;
 the badge app does not play a soundtrack or assume audio hardware. The
 [composition source and provenance](docs/COMPOSITION.md) explain how to render
-either score using Python's standard library. GIF previews are silent.
+the original 48- and 120-second arrangements using Python's standard library.
+Those arrangements are video soundtracks, not the length of the new live show.
+GIF previews are silent.
 
 ## Development
 

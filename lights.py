@@ -26,7 +26,11 @@ class DemoMatrix(MatrixDisplay):
                         continue
                     dx, dy = (x-8.5)/8.5, (y-4)/4
                     radius = (dx*dx+dy*dy)**.5
-                    if mode == "blackhole":
+                    if mode == "swarm":
+                        pulse=frame["pulse"]
+                        strength=max(0,1-abs(radius-(.25+.55*frame.get("beat",0)))*5)
+                        strength=max(strength,.45*max(0,1-radius)*pulse)
+                    elif mode == "blackhole":
                         strength = max(0,1-abs(radius-(.54+.08*sine(now/2600)))*7)
                     elif mode in ("planet","intro","finale"):
                         strength = max(0,1-radius)*(.65+.35*sine(x/18+now/3500))

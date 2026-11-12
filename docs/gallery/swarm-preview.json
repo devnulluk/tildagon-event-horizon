@@ -1,0 +1,187 @@
+{
+  "source": "Official Tildagon SDL/ctx simulator",
+  "synthetic": true,
+  "physical_camera_footage": false,
+  "timebase": "actual monotonic elapsed time",
+  "source_view": "lcd",
+  "showcase": "swarm",
+  "duration_seconds": 60.035496,
+  "requested_sample_fps": 15,
+  "requested_duration_seconds": 60.0,
+  "captured_frames": 824,
+  "renderer_callbacks": 868,
+  "observed_capture_fps": 13.709,
+  "motion_interpolation": false,
+  "output": "swarm-preview.mp4",
+  "native_source_resolution": [
+    240,
+    240
+  ],
+  "scene_choreography": "production-swarm-with-synthetic-BLE-and-local-scene-cuts",
+  "synthetic_inputs_sequenced": true,
+  "idle_waits_skipped": false,
+  "events": [
+    {
+      "at": 0.0,
+      "label": "SOLO"
+    },
+    {
+      "at": 6.184152100002393,
+      "label": "ONE VIRTUAL PEER JOINS"
+    },
+    {
+      "at": 14.128216500001145,
+      "label": "THREE VIRTUAL BADGES"
+    },
+    {
+      "at": 23.136319400000502,
+      "label": "REMOTE BURST / CYAN"
+    },
+    {
+      "at": 31.075021900003776,
+      "label": "REMOTE BURST / AMBER"
+    },
+    {
+      "at": 38.11589890001051,
+      "label": "CONDUCTOR LEAVING"
+    },
+    {
+      "at": 44.056136300001526,
+      "label": "CONDUCTOR HANDOVER"
+    },
+    {
+      "at": 50.11347900000692,
+      "label": "LAST PEER LEAVING"
+    },
+    {
+      "at": 56.11452139999892,
+      "label": "SOLO RECOVERY"
+    }
+  ],
+  "badge_source_sha256": {
+    "__init__.py": "e7f7215c4ab93a3aabc8d1d88bda4b3f9c115656371d41603d0b995c6bffd7ea",
+    "app.py": "73662090fc44ec49def8ad73f845bd0b217550b1f756f98335814c84f8988e48",
+    "ble_link.py": "bb729f5946584397c77524a8edd484cfaa9ec3f5b2327c5ce413f6049758fa43",
+    "chrome.py": "3cba8391c3cfc72d056ee9a6adba13a1453cb0e7bd4458232c1acc9cbf03ed2d",
+    "expansions.py": "60ee934eb5388f6b020215ea99ffc069f747781008462eae400f7eea40fd79c0",
+    "fx_cosmos.py": "c18e9ea059d76fc32760f3c68ace00c4afe25434296fd96df0ba02b96dc5af47",
+    "fx_geometry.py": "53cb9c27f2e39fbb31e2a26c65a0c5401a3144e2367df670170ec250e020b3b3",
+    "lights.py": "0aa838b398bf1f90cbecc933f915f4a5556faf4f956071818197b8ca78c70297",
+    "matrix.py": "f6653ad078ba862f066018bd2a5c691be63ec04610e3bd0f14d534d22db0f31f",
+    "projector.py": "ab5deb49255fe89014a661ba24b03d4c1e79f9f7a5fe564563167a3e0eeb1cd5",
+    "show.py": "f93a0c4bc28bf85b924690262d473145c666ba8660c172fbbff16beb23f2ae7b",
+    "space_inputs.py": "874bb3192eb5fcc9d5fd269caf23eae381803917b4a95815ba8921d926033c7b",
+    "swarm.py": "b9faed1b3c3beeaabafe0b8b7c96d065d0fa4151f43bb23d069eac649543fb52",
+    "swarm_fx.py": "56a3a10e5b3ee8d82e36487397e5b0209cededd0c30301039cb5db9636e96512"
+  },
+  "capture_raw_badge_source_sha256": {
+    "__init__.py": "e7f7215c4ab93a3aabc8d1d88bda4b3f9c115656371d41603d0b995c6bffd7ea",
+    "app.py": "e78dee976341fafa8abb90a15bb0d06ffd672e1ae1cd02afb8eb07f8e1a7ac23",
+    "ble_link.py": "bb729f5946584397c77524a8edd484cfaa9ec3f5b2327c5ce413f6049758fa43",
+    "chrome.py": "3cba8391c3cfc72d056ee9a6adba13a1453cb0e7bd4458232c1acc9cbf03ed2d",
+    "expansions.py": "60ee934eb5388f6b020215ea99ffc069f747781008462eae400f7eea40fd79c0",
+    "fx_cosmos.py": "672e71c7f42f1dca51b9139693afb9d4f02de8b41400a4db3ad5d9b3cbd26aeb",
+    "fx_geometry.py": "2f24f117b367cdf09af0c205a57ec7123b61ef3f225cf56eeb37080e8cd746d1",
+    "lights.py": "0aa838b398bf1f90cbecc933f915f4a5556faf4f956071818197b8ca78c70297",
+    "matrix.py": "a8b3531747abec87cb80bb62b6c0a1f1ed82cc4849e594122adcc385d6457729",
+    "projector.py": "ab5deb49255fe89014a661ba24b03d4c1e79f9f7a5fe564563167a3e0eeb1cd5",
+    "show.py": "f93a0c4bc28bf85b924690262d473145c666ba8660c172fbbff16beb23f2ae7b",
+    "space_inputs.py": "874bb3192eb5fcc9d5fd269caf23eae381803917b4a95815ba8921d926033c7b",
+    "swarm.py": "b9faed1b3c3beeaabafe0b8b7c96d065d0fa4151f43bb23d069eac649543fb52",
+    "swarm_fx.py": "56a3a10e5b3ee8d82e36487397e5b0209cededd0c30301039cb5db9636e96512"
+  },
+  "badge_source_hash_normalization": "UTF-8 source bytes with CRLF normalized to LF",
+  "stills": [
+    {
+      "label": "SOLO",
+      "lcd": "swarm-preview-01-lcd.png",
+      "window": "swarm-preview-01.png",
+      "nearby_count": 0,
+      "nearby_role": "solo",
+      "at": 1.3555276000115555
+    },
+    {
+      "label": "ONE VIRTUAL PEER JOINS",
+      "lcd": "swarm-preview-02-lcd.png",
+      "window": "swarm-preview-02.png",
+      "nearby_count": 1,
+      "nearby_role": "follower",
+      "at": 7.39068570001109
+    },
+    {
+      "label": "THREE VIRTUAL BADGES",
+      "lcd": "swarm-preview-03-lcd.png",
+      "window": "swarm-preview-03.png",
+      "nearby_count": 2,
+      "nearby_role": "follower",
+      "at": 15.321350099999108
+    },
+    {
+      "label": "REMOTE BURST / CYAN",
+      "lcd": "swarm-preview-04-lcd.png",
+      "window": "swarm-preview-04.png",
+      "nearby_count": 2,
+      "nearby_role": "follower",
+      "at": 23.631773000000976
+    },
+    {
+      "label": "REMOTE BURST / AMBER",
+      "lcd": "swarm-preview-05-lcd.png",
+      "window": "swarm-preview-05.png",
+      "nearby_count": 2,
+      "nearby_role": "follower",
+      "at": 31.651309200009564
+    },
+    {
+      "label": "CONDUCTOR LEAVING",
+      "lcd": "swarm-preview-06-lcd.png",
+      "window": "swarm-preview-06.png",
+      "nearby_count": 2,
+      "nearby_role": "follower",
+      "at": 39.33065420000639
+    },
+    {
+      "label": "CONDUCTOR HANDOVER",
+      "lcd": "swarm-preview-07-lcd.png",
+      "window": "swarm-preview-07.png",
+      "nearby_count": 1,
+      "nearby_role": "conductor",
+      "at": 45.333211500008474
+    },
+    {
+      "label": "LAST PEER LEAVING",
+      "lcd": "swarm-preview-08-lcd.png",
+      "window": "swarm-preview-08.png",
+      "nearby_count": 1,
+      "nearby_role": "conductor",
+      "at": 51.36305739999807
+    },
+    {
+      "label": "SOLO RECOVERY",
+      "lcd": "swarm-preview-09-lcd.png",
+      "window": "swarm-preview-09.png",
+      "nearby_count": 0,
+      "nearby_role": "solo",
+      "at": 57.37064900000405
+    }
+  ],
+  "soundtrack_sha256": "70efe0a12ac8c5987764858feeb0bcacf9468b31cf71397d915559b6581f1751",
+  "synthetic_radio": true,
+  "virtual_badges": 3,
+  "physical_multibadge_test": false,
+  "radio_protocol": "Production10-byte BLE service-data codec over bounded in-memory air",
+  "mp4": "swarm-preview.mp4",
+  "gif": "swarm-preview.gif",
+  "poster": "swarm-preview-poster.png",
+  "contact_sheet": "swarm-preview-contact-sheet.png",
+  "codec": "H.264 baseline / yuv420p / faststart",
+  "output_fps": 15,
+  "gif_preview_seconds": 60,
+  "ffmpeg_version": "9.0.2-essentials_build-www.gyan.dev",
+  "verified_decode": true,
+  "soundtrack": "event-horizon-120.wav",
+  "silent_mp4": "swarm-preview-silent.mp4",
+  "encoded_duration_seconds": 60.0,
+  "audio_codec": "AAC192k / original procedural score",
+  "video_stream_copied_for_audio": true
+}

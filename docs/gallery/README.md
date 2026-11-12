@@ -1,19 +1,48 @@
 # Event Horizon gallery
 
-Open [index.html](index.html) for the gallery or [contact-sheet.png](contact-sheet.png) for all eight chapters. Every screenshot is produced by the app running inside the official SDL/ctx simulator. Native LCD files are 240×240; full-window files include clearly labelled virtual Spaceagon controls and expansion diagrams. These are not photographs or physical FPS evidence.
+Open [index.html](index.html) for the gallery or [contact-sheet.png](contact-sheet.png) for all nine chapters of Event Horizon 0.2. Every screenshot is produced by the app running inside the official SDL/ctx simulator. Native LCD files are 240×240; full-window files include clearly labelled virtual Spaceagon controls and expansion diagrams. These are not photographs or physical FPS evidence.
+
+The current [sixty-second Nearby preview](swarm-preview.mp4),
+[GIF](swarm-preview.gif) and [contact sheet](swarm-preview-contact-sheet.png)
+use three virtual badge models with in-memory advertisement delivery. Actual
+production packet encoding, parsing, duplicate handling, expiry and visual
+responses are exercised. There are no physical radios in this capture. It is
+not a claim of three physical badges, RF range or two-badge over-air proof.
+See the [Nearby guide](../SWARM.md) and [native evidence](../VALIDATION.md).
 
 From the project checkout:
 
 ```powershell
 py -3.10 tools/prepare_simulator.py
 .\Launch-Simulator.ps1 -Gallery .\docs\gallery -Expansions
+.\Launch-Simulator.ps1 -Showcase swarm -Record .\docs\gallery\swarm-preview.mp4 -Seconds 60 -Expansions
+```
+
+The current on-device show has nine chapters and lasts 140 seconds. The Nearby
+preview is a representative sequence with explicit simulator events and scene
+cuts; it does not accelerate the underlying animation. Its metadata records
+the virtual-peer configuration and capture timing.
+
+The original **0.1** [48-second trailer](../media/event-horizon-trailer.mp4)
+and [120-second film](../media/event-horizon-full.mp4) are historical recordings
+of the earlier eight-chapter edition. Use the **0.1.0 source checkout** for the
+old video-capture commands below. The original soundtrack arrangements can
+still be regenerated independently; they do not define the new live show's
+length:
+
+```powershell
 py -3.10 tools/compose_soundtrack.py --seconds 48 --output .\score-48.wav
 py -3.10 tools/compose_soundtrack.py --seconds 120 --output .\score-120.wav
 .\Launch-Simulator.ps1 -Record .\docs\media\event-horizon-trailer.mp4 -Seconds 48 -Soundtrack .\score-48.wav -Expansions
 .\Launch-Simulator.ps1 -Record .\docs\media\event-horizon-full.mp4 -Seconds 120 -Soundtrack .\score-120.wav -Expansions
 ```
 
-The trailer selects all eight chapters at six-second boundaries without accelerating their animation. The full film follows the app's natural 120-second score from zero. Videos retain actual monotonic frame timing; FFmpeg duplicates/drops samples as needed for the output frame rate and performs no motion interpolation. JSON siblings contain source hashes, capture timing and encoding proof.
+The historical trailer selected eight chapters at six-second boundaries; its
+full film followed the earlier 120-second score. Reproducing those exact old
+scene cuts requires the 0.1.0 source tag. All videos retain actual monotonic
+capture timing; FFmpeg duplicates/drops samples as needed for the output frame
+rate and performs no motion interpolation. JSON siblings contain source
+hashes, capture timing and encoding proof.
 
 Published media metadata uses repository-relative artifact paths. Generated WAV
 references point to the reproducible `work/horizon-media/` output directory;

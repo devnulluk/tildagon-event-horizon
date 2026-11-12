@@ -1,7 +1,9 @@
 [CmdletBinding()]
 param(
-    [ValidateSet('intro','starflight','tunnel','terrain','planet','kaleidoscope','blackhole','finale')][string]$Scene,
-    [ValidateSet('tour','idle')][string]$Showcase = 'tour',
+    [ValidateSet('intro','starflight','tunnel','terrain','planet','swarm','kaleidoscope','blackhole','finale')][string]$Scene,
+    [ValidateSet('tour','idle','swarm')][string]$Showcase = 'tour',
+    [switch]$Swarm,
+    [ValidateSet('solo','joined','trio','burst','handover','departed')][string]$SwarmStage,
     [switch]$Screenshot,
     [string]$OutputPath,
     [string]$Record,
@@ -48,6 +50,8 @@ if ($LASTEXITCODE -ne 0) { throw 'Simulator verification failed.' }
 $arguments = @($launcher, '--showcase', $Showcase, '--quality', [string]$Quality)
 if ($Scene) { $arguments += @('--scene', $Scene) }
 if ($Expansions) { $arguments += '--expansions' }
+if ($Swarm) { $arguments += '--swarm' }
+if ($SwarmStage) { $arguments += @('--swarm-stage', $SwarmStage) }
 if ($Record) { $arguments += @('--record', $Record, '--seconds', [string]$Seconds, '--video-fps', [string]$VideoFps, '--record-view', $RecordView) }
 if ($Soundtrack) { $arguments += @('--soundtrack', $Soundtrack) }
 if ($Gallery) { $arguments += @('--gallery', $Gallery) }
