@@ -14,7 +14,7 @@ The [native validation record](VALIDATION.md) documents the 679-second ESP-NOW
 full-show pass, final-source synthetic-peer/display fixture, raw API
 qualification and withdrawn Bluetooth attempts. It explicitly does not claim
 an ESP-NOW exchange between two physical badges.
-Archive and live-store checks still need to match the exact published commit.
+Archive and live-store checks matched the exact published commit below.
 
 The current [manifest schema](https://github.com/emfcamp/badge-2024-app-store/blob/main/packages/tildagon-app/src/TildagonAppManifest.ts)
 requires name/category and author/license/source URL/description/version. It has
@@ -26,15 +26,26 @@ is the source of truth for that behavior.
 
 ## Keep the badge download small
 
-Release **0.2.0** was verified in the live store on 12 November 2026. It was
+Release **0.2.1** was verified in the live store on 12 November 2026. Its normal
+published release and store record point to commit
+`c818b8336d48d18f2c35fbaaf27abaeff18c6655`. The store's cached download is
+37,792 bytes and contains 16 runtime files (126,729 bytes unpacked). Every file
+was checked against the release source. The current
+[publication record](store-publication.json) preserves the listing and archive
+hashes; media, documentation, simulator and tests are excluded from that download.
+Public [CI](https://github.com/devnulluk/tildagon-event-horizon/actions/runs/43179141610)
+passed all 151 tests, compilation and committed-archive validation at that commit.
+The separate native and synthetic-fixture evidence is in
+[VALIDATION.md](VALIDATION.md), including the remaining two-physical-badge RF check.
+
+Historical release **0.2.0** was verified in the live store on 12 November 2026. It was
 subsequently marked as a pre-release after the watchdog observation documented
 in [VALIDATION.md](VALIDATION.md); archive integrity is not a stability result.
 The store
 record points to commit `0b9148fcfe8524e36b862c43bc8c14e660682a2b`; its cached
 download is 36,868 bytes and contains 16 runtime files (122,004 bytes unpacked).
-Every file was checked against the release source. The current
-[publication record](store-publication.json) preserves the listing and archive
-hashes; media, documentation, simulator and tests are excluded from that download.
+Every file was checked against the release source. Its
+[historical publication record](store-publication-0.2.0.json) preserves that result.
 
 Historical release **0.1.0** was verified in the live store on 12 November 2026. The store
 record points to commit `706805e8141d389e01bd4011d3b03a2347a9c3b2`; its cached

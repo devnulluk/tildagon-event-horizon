@@ -2,19 +2,19 @@
   "owner": "devnulluk",
   "repository": "tildagon-event-horizon",
   "name": "Event Horizon",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "categories": [
     "Media"
   ],
   "code": "21344014",
-  "runtime_bytes": 123139,
+  "runtime_bytes": 127875,
   "store": {
     "code": "21344014",
     "url": "https://apps.badge.emfcamp.org/apps/21344014/",
-    "release_commit": "0b9148fcfe8524e36b862c43bc8c14e660682a2b",
+    "release_commit": "c818b8336d48d18f2c35fbaaf27abaeff18c6655",
     "archive": {
-      "compressed_bytes": 36868,
-      "runtime_bytes": 122004,
+      "compressed_bytes": 37792,
+      "runtime_bytes": 126729,
       "files": [
         "LICENSE",
         "__init__.py",
@@ -36,8 +36,8 @@
       "sha256": {
         "LICENSE": "fa454f6a42c4ee3aed2cf028457231d43f55d0a3953bb2d3cb59faf8d28ba4c9",
         "__init__.py": "e7f7215c4ab93a3aabc8d1d88bda4b3f9c115656371d41603d0b995c6bffd7ea",
-        "app.py": "73662090fc44ec49def8ad73f845bd0b217550b1f756f98335814c84f8988e48",
-        "ble_link.py": "bb729f5946584397c77524a8edd484cfaa9ec3f5b2327c5ce413f6049758fa43",
+        "app.py": "ff8894598ad0916793175dbd3e47ade5e2da268423ed84be47424b296d480a83",
+        "ble_link.py": "b2a66166f725701cd6b8c6ddfd67f0065220f2776e0e2aa8cc6eb9c8c47839a8",
         "chrome.py": "3cba8391c3cfc72d056ee9a6adba13a1453cb0e7bd4458232c1acc9cbf03ed2d",
         "expansions.py": "60ee934eb5388f6b020215ea99ffc069f747781008462eae400f7eea40fd79c0",
         "fx_cosmos.py": "c18e9ea059d76fc32760f3c68ace00c4afe25434296fd96df0ba02b96dc5af47",
@@ -49,7 +49,7 @@
         "space_inputs.py": "874bb3192eb5fcc9d5fd269caf23eae381803917b4a95815ba8921d926033c7b",
         "swarm.py": "b9faed1b3c3beeaabafe0b8b7c96d065d0fa4151f43bb23d069eac649543fb52",
         "swarm_fx.py": "56a3a10e5b3ee8d82e36487397e5b0209cededd0c30301039cb5db9636e96512",
-        "tildagon.toml": "bd566b7483a5aa619b06bad01a44787f198a38b57c4c6ee17d3a983b96594bda"
+        "tildagon.toml": "e012a90b541c4fb0c885b9e108ffe40715c2da4854b927f08161a80a56600596"
       }
     }
   }
