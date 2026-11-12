@@ -5,6 +5,8 @@ field, dive into a geometric tunnel, skim a wireframe landscape and orbit a
 rotating point planet before the black-hole finale. The round LCD, outer LEDs
 and optional hexpansions follow one 120 BPM score.
 
+**[Install from the App Store](https://apps.badge.emfcamp.org/apps/21344014/): code `21344014`.**
+
 ![Event Horizon trailer](docs/media/event-horizon-trailer.gif)
 
 [Watch the trailer with original music](docs/media/event-horizon-trailer.mp4) ·

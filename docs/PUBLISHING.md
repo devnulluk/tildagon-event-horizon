@@ -21,6 +21,12 @@ is the source of truth for that behavior.
 
 ## Keep the badge download small
 
+Release **0.1.0** was verified in the live store on 12 November 2026. The store
+record points to commit `706805e8141d389e01bd4011d3b03a2347a9c3b2`; its cached
+download is 27,062 bytes and contains 13 runtime files (88,170 bytes unpacked).
+The validator checked every file against the release source. The
+[publication record](store-publication.json) preserves that result.
+
 The registry selects the newest release by creation time and downloads its
 **commit source tarball**. Uploaded custom runtime archives are not selected.
 The repository can contain videos, screenshots and soundtrack downloads, while
