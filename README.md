@@ -1,5 +1,10 @@
 # Event Horizon
 
+**Release status:** 0.2.0 is temporarily a pre-release while a watchdog restart
+observed during extended Bluetooth-enabled hardware testing is investigated.
+The stable solo edition is [0.1.0](https://github.com/devnulluk/tildagon-event-horizon/releases/tag/v0.1.0).
+The Nearby stability update is being validated; the root cause is not yet proven.
+
 A 140-second procedural odyssey for Spaceagon and Tildagon. Fly through stars,
 dive into a geometric tunnel, skim neon terrain, orbit a rotating planet and
 awaken a constellation with nearby badges. The round LCD, outer LEDs and
