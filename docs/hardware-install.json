@@ -1,0 +1,24 @@
+{
+  "version": "0.1.0",
+  "all_bytes_verified": true,
+  "runtime_files": [
+    "__init__.py",
+    "app.py",
+    "chrome.py",
+    "expansions.py",
+    "fx_cosmos.py",
+    "fx_geometry.py",
+    "lights.py",
+    "matrix.py",
+    "projector.py",
+    "show.py",
+    "space_inputs.py",
+    "tildagon.toml",
+    "LICENSE",
+    "metadata.json",
+    "config.json"
+  ],
+  "phone_app_untouched": true,
+  "firmware_untouched": true,
+  "startup": "verified native 370-second soak; see hardware-soak.json"
+}

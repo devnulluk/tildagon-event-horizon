@@ -1,0 +1,80 @@
+{
+  "matrix_mode": "finale",
+  "matrix_frames": 7,
+  "eeh_brightness": 0.03,
+  "eeh_ready": true,
+  "free_heap": 859104,
+  "matrix_ready": true,
+  "spaceagon": true,
+  "keyboard": true,
+  "version": "0.1.0",
+  "focused": true,
+  "ring_brightness": 0.15,
+  "measurements": [
+    {
+      "mean_draw_ms": 68.79,
+      "scene": "intro",
+      "observed_fps": 5.72,
+      "frames": 18,
+      "quality": 0.9,
+      "p95_draw_ms": 143.16
+    },
+    {
+      "mean_draw_ms": 47.79,
+      "scene": "starflight",
+      "observed_fps": 6.28,
+      "frames": 20,
+      "quality": 0.9,
+      "p95_draw_ms": 120.16
+    },
+    {
+      "mean_draw_ms": 62.59,
+      "scene": "tunnel",
+      "observed_fps": 6.06,
+      "frames": 19,
+      "quality": 0.75,
+      "p95_draw_ms": 142.08
+    },
+    {
+      "mean_draw_ms": 69.61,
+      "scene": "terrain",
+      "observed_fps": 5.69,
+      "frames": 18,
+      "quality": 0.75,
+      "p95_draw_ms": 144.13
+    },
+    {
+      "mean_draw_ms": 45.48,
+      "scene": "planet",
+      "observed_fps": 5.94,
+      "frames": 19,
+      "quality": 0.9,
+      "p95_draw_ms": 53.17
+    },
+    {
+      "mean_draw_ms": 58.21,
+      "scene": "kaleidoscope",
+      "observed_fps": 6.02,
+      "frames": 19,
+      "quality": 0.75,
+      "p95_draw_ms": 66.95
+    },
+    {
+      "mean_draw_ms": 78.35,
+      "scene": "blackhole",
+      "observed_fps": 5.05,
+      "frames": 16,
+      "quality": 0.6,
+      "p95_draw_ms": 150.08
+    },
+    {
+      "mean_draw_ms": 66.23,
+      "scene": "finale",
+      "observed_fps": 6.04,
+      "frames": 19,
+      "quality": 0.9,
+      "p95_draw_ms": 142.3
+    }
+  ],
+  "motion_valid": true
+}

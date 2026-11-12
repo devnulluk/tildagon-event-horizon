@@ -1,0 +1,25 @@
+{
+  "heap_after": 1001456,
+  "matrix_frames": 148,
+  "errors": [],
+  "minimum_uncollected_heap": 808528,
+  "frames_by_scene": {
+    "finale": 207,
+    "starflight": 309,
+    "terrain": 274,
+    "intro": 179,
+    "blackhole": 311,
+    "tunnel": 284,
+    "kaleidoscope": 294,
+    "planet": 284
+  },
+  "spaceagon": true,
+  "motion_valid": true,
+  "eeh_ready": true,
+  "seconds": 370,
+  "focused": true,
+  "matrix_ready": true,
+  "heap_before": 1007136,
+  "completed": true,
+  "version": "0.1.0"
+}

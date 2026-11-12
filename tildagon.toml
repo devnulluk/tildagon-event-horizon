@@ -1,0 +1,18 @@
+[app]
+name = "Event Horizon"
+category = "Media"
+
+[metadata]
+author = "devnulluk"
+license = "MIT"
+url = "https://github.com/devnulluk/tildagon-event-horizon"
+description = "A standalone Spaceagon/Tildagon light show: cosmic scenes, geometric motion and synchronised LEDs."
+version = "0.1.0"
+
+[[metadata.capabilities]]
+required = false
+feature = { type = "2024 Frontboard" }
+
+[[metadata.capabilities]]
+required = false
+feature = { type = "2026 Frontboard" }

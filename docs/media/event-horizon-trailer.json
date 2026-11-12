@@ -1,0 +1,87 @@
+{
+  "source": "Official Tildagon SDL/ctx simulator",
+  "synthetic": true,
+  "physical_camera_footage": false,
+  "timebase": "actual monotonic elapsed time",
+  "source_view": "lcd",
+  "showcase": "tour",
+  "duration_seconds": 48.008609,
+  "requested_sample_fps": 15,
+  "requested_duration_seconds": 48.0,
+  "captured_frames": 586,
+  "renderer_callbacks": 629,
+  "observed_capture_fps": 12.185,
+  "motion_interpolation": false,
+  "output": "docs/media/event-horizon-trailer.mp4",
+  "native_source_resolution": [
+    240,
+    240
+  ],
+  "scene_choreography": "manual-scene-cuts",
+  "synthetic_inputs_sequenced": true,
+  "idle_waits_skipped": false,
+  "events": [
+    {
+      "at": 0.0,
+      "label": "INTRO"
+    },
+    {
+      "at": 6.04399600000761,
+      "label": "STARFLIGHT"
+    },
+    {
+      "at": 12.014938200009055,
+      "label": "TUNNEL"
+    },
+    {
+      "at": 18.020664800002123,
+      "label": "TERRAIN"
+    },
+    {
+      "at": 24.039242800005013,
+      "label": "PLANET"
+    },
+    {
+      "at": 30.030615000010584,
+      "label": "KALEIDOSCOPE"
+    },
+    {
+      "at": 36.06689440000628,
+      "label": "BLACKHOLE"
+    },
+    {
+      "at": 42.07303290000709,
+      "label": "FINALE"
+    }
+  ],
+  "badge_source_sha256": {
+    "app.py": "1d29bf7c4ac065469848948b771daebdab943ad1a6242f35da42a24b04040cb9",
+    "chrome.py": "1d926cf41de069b0669cb406a5438e8bb0c8e08aa16ed86aaadeb39307cd43f6",
+    "expansions.py": "60ee934eb5388f6b020215ea99ffc069f747781008462eae400f7eea40fd79c0",
+    "fx_cosmos.py": "672e71c7f42f1dca51b9139693afb9d4f02de8b41400a4db3ad5d9b3cbd26aeb",
+    "fx_geometry.py": "2f24f117b367cdf09af0c205a57ec7123b61ef3f225cf56eeb37080e8cd746d1",
+    "lights.py": "13c52a00f81839f9dba7b2319edcf68f209e71954378e28def955b2817df1812",
+    "matrix.py": "a8b3531747abec87cb80bb62b6c0a1f1ed82cc4849e594122adcc385d6457729",
+    "projector.py": "ab5deb49255fe89014a661ba24b03d4c1e79f9f7a5fe564563167a3e0eeb1cd5",
+    "show.py": "e6adb8dfd0fffb88860ab318d3d991cc578e6a096e05e74053c7ee61882fabf5",
+    "space_inputs.py": "874bb3192eb5fcc9d5fd269caf23eae381803917b4a95815ba8921d926033c7b",
+    "__init__.py": "e7f7215c4ab93a3aabc8d1d88bda4b3f9c115656371d41603d0b995c6bffd7ea"
+  },
+  "stills": [],
+  "soundtrack_sha256": "b87734db7b14ae1bc1cd7adb5d768c039d09c7784e847b0f23564756ee2b46ec",
+  "mp4": "docs/media/event-horizon-trailer.mp4",
+  "gif": "docs/media/event-horizon-trailer.gif",
+  "poster": "docs/media/event-horizon-trailer-poster.png",
+  "contact_sheet": "docs/media/event-horizon-trailer-contact-sheet.png",
+  "codec": "H.264 baseline / yuv420p / faststart",
+  "output_fps": 15,
+  "gif_preview_seconds": 48,
+  "ffmpeg_version": "9.0.2-essentials_build-www.gyan.dev",
+  "verified_decode": true,
+  "soundtrack": "work/horizon-media/event-horizon-48.wav",
+  "silent_mp4": "docs/media/event-horizon-trailer-silent.mp4",
+  "encoded_duration_seconds": 48.0,
+  "audio_codec": "AAC192k / original procedural score",
+  "video_stream_copied_for_audio": true,
+  "path_base": "repository"
+}

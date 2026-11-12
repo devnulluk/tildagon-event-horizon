@@ -1,0 +1,20 @@
+# Private local configuration and generated Python state.
+config.json
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+
+# Prepared official simulator, recordings' scratch data and local build output.
+.simulator/
+work/
+build/
+dist/
+*.wav
+*.private.zip
+build-context.tar
+
+# Intermediate pre-optimization profiling; retain locally, omit from release.
+/docs/hardware-native-benchmark.json
+/docs/hardware-profile.json
+/docs/hardware-lights-profile.json

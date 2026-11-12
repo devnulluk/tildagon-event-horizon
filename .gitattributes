@@ -1,0 +1,9 @@
+# The store downloads the release commit's source archive, not uploaded assets.
+# Keep the public repository rich; keep the badge's in-memory download small.
+* text=auto
+*.py text eol=lf
+*.toml text eol=lf
+* export-ignore
+/*.py -export-ignore
+/tildagon.toml -export-ignore
+/LICENSE -export-ignore
